@@ -6,6 +6,17 @@ public class GameObject{
 
     private Vector2 position;
 
+    @Override
+    public String toString() {
+        return "GameObject{" +
+                "position=" + position +
+                ", velocity=" + velocity +
+                ", acceleration=" + acceleration +
+                ", width=" + width +
+                ", height=" + height +
+                '}';
+    }
+
     private Vector2 velocity;
     private Vector2 acceleration;
 

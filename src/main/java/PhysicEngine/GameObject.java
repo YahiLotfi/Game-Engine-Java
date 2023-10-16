@@ -9,26 +9,33 @@ public class GameObject{
     private Vector2 velocity;
 
     private Vector2 acceleration;
-
+    public GameObject(float x , float y) {
+        this.position =  new Vector2(x,y);
+        this.velocity = new Vector2(0,0);
+        this.acceleration = new Vector2(0,0);
+    }
     public Vector2 getPosition() {
         return position;
     }
 
-    public void setPosition(Vector2 position) {
-        this.position = position;
+    public void setPosition(float x , float y)
+    {
+        this.position = new Vector2(x,y);
+    }
+    public Vector2 getVelocity() {
+        return velocity;
     }
 
-    public GameObject(float x , float y) {
-        this.position =  new Vector2(x,y);
-        this.position = new Vector2(0,0);
-        this.acceleration = new Vector2(0,0);
+    public void setVelocity(float x , float y) {
+        this.velocity = new Vector2(x,y);
+    }
+    public Vector2 getAcceleration() {
+        return acceleration;
     }
 
-    public void applyForce(float forceX, float forceY) {
-        // Mettez à jour l'accélération en fonction de la force
-        acceleration = new Vector2(forceX,forceY);
+    public void setAcceleration(float x, float y) {
+        this.acceleration = new Vector2(x,y);
     }
-
     public void update() {
         // Mettez à jour la vitesse en fonction de l'accélération
             changeVelocity(acceleration);

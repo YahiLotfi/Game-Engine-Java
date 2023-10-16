@@ -12,4 +12,5 @@ class TestMyClass {
     assertThat(true).isTrue();
   }
 
+
 }

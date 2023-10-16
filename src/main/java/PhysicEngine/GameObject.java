@@ -7,10 +7,18 @@ public class GameObject{
     private Vector2 position;
 
     private Vector2 velocity;
-
     private Vector2 acceleration;
-    public GameObject(float x , float y) {
-        this.position =  new Vector2(x,y);
+
+
+
+    private float width;
+    private float height;
+
+
+    public GameObject(float width , float height) {
+        this.width = width;
+        this.height = height;
+        this.position =  new Vector2(0,0);
         this.velocity = new Vector2(0,0);
         this.acceleration = new Vector2(0,0);
     }
@@ -36,6 +44,23 @@ public class GameObject{
     public void setAcceleration(float x, float y) {
         this.acceleration = new Vector2(x,y);
     }
+
+
+
+    public float getWidth() { return width; }
+
+    public void setWidth(float width) {
+        this.width = width;
+    }
+
+    public float getHeight() { return height; }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+
+
     public void update() {
         // Mettez à jour la vitesse en fonction de l'accélération
             changeVelocity(acceleration);

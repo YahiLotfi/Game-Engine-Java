@@ -34,11 +34,11 @@ public class PhysicEngine {
 // updatePosition
 // CheckColision
 //Handle Colision }
-public void updateEngine( float deltaTime){
+public void UpdateEngine(float deltaTime){
         for (GameObject gameObject : gameObjects) {
             // Mettez à jour la physique de chaque objet en fonction du temps écoulé (deltaTime).
             //on doit ajouter un parametre du temps à la methode update
-            gameObject.update();
+            gameObject.update(deltaTime);
 
             // Vérifiez les collisions avec d'autres objets
             for (GameObject otherObject : gameObjects) {

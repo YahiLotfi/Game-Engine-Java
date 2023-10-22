@@ -27,6 +27,8 @@ public class GameObject{
     private float height;
     private float mass;
 
+    private  double deltaTime;
+
 
     public GameObject(float width , float height,
                       float x, float y) {
@@ -71,20 +73,20 @@ public class GameObject{
 
 
 
-    public void update() {
+    public void update(float deltaTime) {
         // il faut ajouter le temps de mise jrs genre quand il doit faire le mise à jrs
         // Mettez à jour la vitesse en fonction de l'accélération
-            changeVelocity(acceleration);
+            changeVelocity(acceleration,deltaTime);
         // Mettez à jour la position en fonction de la vitesse
-            moveObject(velocity);
+            moveObject(velocity,deltaTime);
     }
-    private  void moveObject(Vector2 velocity){
-        position.setX(position.getX()+velocity.getX());
-        position.setY(position.getY()+velocity.getY());
+    private  void moveObject(Vector2 velocity ,float deltaTime){
+        position.setX(position.getX() * deltaTime+velocity.getX()* deltaTime);
+        position.setY(position.getY() * deltaTime+velocity.getY() * deltaTime);
     }
-    private void changeVelocity(Vector2 acceleration){
-        velocity.setX(velocity.getX()+ acceleration.getX());
-        velocity.setY(velocity.getY()+ acceleration.getY());
+    private void changeVelocity(Vector2 acceleration , float deltaTime){
+        velocity.setX(velocity.getX() * deltaTime+ acceleration.getX() * deltaTime);
+        velocity.setY(velocity.getY() * deltaTime+ acceleration.getY() * deltaTime);
     }
 
 /*créer une methode pour déterminer if currect object is in collision with other objects

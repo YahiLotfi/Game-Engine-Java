@@ -1,6 +1,6 @@
-module sample {
+module GraphicEngine  {
   requires javafx.controls;
     requires java.desktop;
 
-    exports sample;
+    exports GraphicEngine ;
 }

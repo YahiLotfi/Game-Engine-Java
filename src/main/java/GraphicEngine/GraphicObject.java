@@ -5,8 +5,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
 public class GraphicObject {
-	private int width;
-    private int height;
+	private float width;
+    private float height;
     Color color;
 //    Color borderColor;
 //    double borderWidth;
@@ -14,28 +14,32 @@ public class GraphicObject {
 	private Vector2 position;
    
     
-    public GraphicObject(int width, int height, Color color, int x, int y) {
+    public GraphicObject(float width, float height, float x, float y, Color color) {
         this.width = width;
         this.height = height;
         this.color = color;
 		this.position =  new Vector2(x,y);
-//        this.borderColor = borderColor;
-//        this.borderWidth = borderWidth;
+		Rectangle rectangle = new Rectangle(this.width, this.height);
+		rectangle.setFill(this.color);
+
+		// Place l'objet aux coordonnées spécifiées (x, y)
+		rectangle.setLayoutX(this.position.getX() - this.getCenterX());
+		rectangle.setLayoutY(this.position.getY() - this.getCenterY());
     }
 
-    public int getWidth() {
+    public float getWidth() {
 		return width;
 	}
 
-	public void setWidth(int width) {
+	public void setWidth(float width) {
 		this.width = width;
 	}
 
-	public int getHeight() {
+	public float getHeight() {
 		return height;
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(float height) {
 		this.height = height;
 	}
 
@@ -48,19 +52,19 @@ public class GraphicObject {
 	}
 
 	
-	public int getCenterX() {
+	public float getCenterX() {
         // Calcul du centre en x (abscisse)
         return width / 2;
     }
 
-    public int getCenterY() {
+    public float getCenterY() {
         // Calcul du centre en y (ordonnée)
         return height / 2;
     }
     
-    public Rectangle getBounds(int x, int y) {
-        int topLeftX = x - getCenterX();
-        int topLeftY = y - getCenterY();
+    public Rectangle getBounds(float x, float y) {
+		float topLeftX = x - getCenterX();
+		float topLeftY = y - getCenterY();
         return new Rectangle(topLeftX, topLeftY, width, height);
     }
 

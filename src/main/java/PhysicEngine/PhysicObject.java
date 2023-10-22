@@ -1,9 +1,6 @@
 package PhysicEngine;
 
-import java.util.List;
-import java.util.Vector;
-
-public class GameObject{
+public class PhysicObject {
 
     private Vector2 position;
 
@@ -30,8 +27,8 @@ public class GameObject{
     private  double deltaTime;
 
 
-    public GameObject(float width , float height,
-                      float x, float y) {
+    public PhysicObject(float width , float height,
+                        float x, float y) {
         this.width = width;
         this.height = height;
         this.position =  new Vector2(x,y);
@@ -92,7 +89,7 @@ public class GameObject{
 /*créer une methode pour déterminer if currect object is in collision with other objects
 by detecting bounding boxes of two objects
  */
-        public boolean detectCollision(GameObject otherobject) {
+        public boolean detectCollision(PhysicObject otherobject) {
             //compare parameters of this object with other objects
             float left1 = position.getX();
             float right1 = position.getX() + width;
@@ -108,7 +105,7 @@ by detecting bounding boxes of two objects
         }
    //To handle with the problem of colision of two object we stop both of them
    // So we set their velocity equal to zero
-   public void handleCollision(GameObject currentObject, GameObject otherObject) {
+   public void handleCollision(PhysicObject currentObject, PhysicObject otherObject) {
        if (currentObject.detectCollision(otherObject)) {
            // Stop both objects
            currentObject.setVelocity(0, 0);
@@ -128,7 +125,7 @@ by detecting bounding boxes of two objects
 /*Bouncing or deflecting objects away from each other in Java involves updating the velocities
 of the colliding objects to simulate a realistic bounce.*/
 
-    public void handleColisionBound(GameObject currentObject, GameObject otherObject){
+    public void handleColisionBound(PhysicObject currentObject, PhysicObject otherObject){
 
         if (currentObject.detectCollision(otherObject)) {
         // Calculate the new velocities for the objects to simulate a bounce
@@ -139,7 +136,7 @@ of the colliding objects to simulate a realistic bounce.*/
         }
 
 
-    public static Vector2 calculateCollisionNormal(GameObject object1, GameObject object2) {
+    public static Vector2 calculateCollisionNormal(PhysicObject object1, PhysicObject object2) {
         // Calculate and return the collision normal (unit vector pointing from object1 to object2)
         float dx = object2.velocity.getX() - object1.velocity.getX();
         float dy = object2.velocity.getY() - object1.velocity.getY();

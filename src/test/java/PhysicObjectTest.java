@@ -1,24 +1,24 @@
-import PhysicEngine.GameObject;
+import PhysicEngine.PhysicObject;
 import PhysicEngine.Vector2;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GameObjectTest {
+class PhysicObjectTest {
 
     @Test
     public void testUpdate() {
         System.out.println("Testing update...");
 
-        GameObject gameObject = new GameObject(12, 7,0,0);
-        System.out.println("Object created with these dimensions : " + gameObject );
+        PhysicObject physicObject = new PhysicObject(12, 7,0,0);
+        System.out.println("Object created with these dimensions : " + physicObject);
 
-        gameObject.setVelocity(2, 3);
+        physicObject.setVelocity(2, 3);
 
-        gameObject.setAcceleration(1, 1);
-        gameObject.update();
-        Vector2 velocity = gameObject.getVelocity();
-        Vector2 position = gameObject.getPosition();
+        physicObject.setAcceleration(1, 1);
+        physicObject.update();
+        Vector2 velocity = physicObject.getVelocity();
+        Vector2 position = physicObject.getPosition();
 
 
         assertEquals(3.0f, velocity.getX());

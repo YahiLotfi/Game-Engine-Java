@@ -10,7 +10,7 @@ class GameObjectTest {
     public void testUpdate() {
         System.out.println("Testing update...");
 
-        GameObject gameObject = new GameObject(12, 7);
+        GameObject gameObject = new GameObject(12, 7,0,0);
         System.out.println("Object created with these dimensions : " + gameObject );
 
         gameObject.setVelocity(2, 3);

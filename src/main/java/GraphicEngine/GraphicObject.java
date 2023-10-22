@@ -1,22 +1,26 @@
 package GraphicEngine;
 
+import PhysicEngine.Vector2;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
-public class ObjectGraphic {
+public class GraphicObject {
 	private int width;
     private int height;
     Color color;
-    Color borderColor;
-    double borderWidth;
+//    Color borderColor;
+//    double borderWidth;
+
+	private Vector2 position;
    
     
-    public ObjectGraphic(int width, int height, Color color, Color borderColor, double borderWidth) {
+    public GraphicObject(int width, int height, Color color, int x, int y) {
         this.width = width;
         this.height = height;
         this.color = color;
-        this.borderColor = borderColor;
-        this.borderWidth = borderWidth;
+		this.position =  new Vector2(x,y);
+//        this.borderColor = borderColor;
+//        this.borderWidth = borderWidth;
     }
 
     public int getWidth() {
@@ -43,21 +47,6 @@ public class ObjectGraphic {
 		this.color = color;
 	}
 
-	public Color getBorderColor() {
-		return borderColor;
-	}
-
-	public void setBorderColor(Color borderColor) {
-		this.borderColor = borderColor;
-	}
-
-	public double getBorderWidth() {
-		return borderWidth;
-	}
-
-	public void setBorderWidth(double borderWidth) {
-		this.borderWidth = borderWidth;
-	}
 	
 	public int getCenterX() {
         // Calcul du centre en x (abscisse)

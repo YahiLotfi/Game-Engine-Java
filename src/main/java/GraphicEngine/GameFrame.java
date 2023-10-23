@@ -18,7 +18,7 @@ public class GameFrame extends Application {
 		int windowWidth = 800;
 		int windowHeight = 600;
 
-		private Group root ;
+		private Group root = new Group() ;
 
 		private Scene scene ;
 
@@ -39,19 +39,14 @@ public class GameFrame extends Application {
 		}
 
 
-
 		public GameFrame() {
 		}
 
 		@Override
 	    public void start(Stage primaryStage) {
-			//Creating a Group object
-			this.root = new Group();
 			this.scene = new Scene(root, windowWidth, windowHeight);
 	        primaryStage.setScene(scene);
 			primaryStage.show();
-
-
 	    }
 
 

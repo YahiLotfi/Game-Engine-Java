@@ -31,8 +31,9 @@ public class GraphicEngine {
 
     public GraphicEngine(String[] args) {
         graphicObjects = new ArrayList<>();
+        GameFrame.main(args);
         frame = new GameFrame();
-        frame.main(args);
+
     }
 
     public GraphicObject createGraphicObject(float width , float height, float x, float y,Color color) {

@@ -10,6 +10,11 @@ public class CoreKernal {
 
     private  float deltaTime;
     private float lastFrametime;
+
+    public ArrayList<GameObject> getGameObjects() {
+        return gameObjects;
+    }
+
     private PhysicEngine physicEngine;
     private GraphicEngine graphicEngine;
     private boolean gameIsRunning=true;
@@ -23,11 +28,10 @@ public class CoreKernal {
     public void startEngine(String[] args){
         physicEngine = new PhysicEngine();
         graphicEngine = new GraphicEngine(args);
-        start();
-        gameLoop();
     }
-    public void start(){
+    public void startGame(){
         lastFrametime = System.currentTimeMillis();
+        gameLoop();
 
 
     }

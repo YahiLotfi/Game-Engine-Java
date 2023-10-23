@@ -8,9 +8,10 @@ public class Main {
   public static void main(String[] args) {
     CoreKernal coreKernal = new CoreKernal();
     coreKernal.startEngine(args);
-
     GameObject obj = coreKernal.createGameObject(1000,1000,2,2, Color.RED);
-    System.out.println(obj);
+    coreKernal.startGame();
+
+    System.out.println(coreKernal.getGameObjects().size());
 
   }
 }

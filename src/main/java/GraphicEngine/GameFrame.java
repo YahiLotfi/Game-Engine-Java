@@ -3,34 +3,51 @@ package GraphicEngine;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 	public class GameFrame extends Application {
+
+		int windowWidth = 800;
+		int windowHeight = 600;
+
+		private Group root ;
+
+		private Scene scene ;
+
+		public Group getRoot() {
+			return root;
+		}
+
+		public void addObjToRoot(GraphicObject graphicObject) {
+			this.root.getChildren().add( graphicObject.getRectangle());
+		}
+
+		public Scene getScene() {
+			return scene;
+		}
+
+		public void setScene(Scene scene) {
+			this.scene = scene;
+		}
+
 		public GameFrame() {
+
+			this.root = new Group();
+			this.scene = new Scene(root, windowWidth, windowHeight);
+
 		}
 
 		@Override
 	    public void start(Stage primaryStage) {
-	        int windowWidth = 800;
-	        int windowHeight = 600;
 
-	        // Crée un groupe pour contenir le rectangle
-	        Group root = new Group();
-
-	        // Crée la scène
-	        Scene scene = new Scene(root, windowWidth, windowHeight);
 
 	        // Configure et affiche la fenêtre
 	        primaryStage.setTitle("Our Game");
-	        primaryStage.setScene(scene);
+	        primaryStage.setScene(this.scene);
+			primaryStage.show();
 
-
-//			root.getChildren().add(rectangle2);
-
-	        primaryStage.show();
 	    }
+
 
 	    public static void main(String[] args) {
 	        launch(args);

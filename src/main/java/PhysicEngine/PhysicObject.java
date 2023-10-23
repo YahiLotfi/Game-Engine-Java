@@ -77,12 +77,12 @@ public class PhysicObject {
             moveObject(velocity,deltaTime);
     }
     private  void moveObject(Vector2 velocity ,float deltaTime){
-        position.setX(position.getX() * deltaTime+velocity.getX()* deltaTime);
-        position.setY(position.getY() * deltaTime+velocity.getY() * deltaTime);
+        position.setX(position.getX() +velocity.getX()* deltaTime);
+        position.setY(position.getY() +velocity.getY() * deltaTime);
     }
     private void changeVelocity(Vector2 acceleration , float deltaTime){
-        velocity.setX(velocity.getX() * deltaTime+ acceleration.getX() * deltaTime);
-        velocity.setY(velocity.getY() * deltaTime+ acceleration.getY() * deltaTime);
+        velocity.setX(velocity.getX() + acceleration.getX() * deltaTime);
+        velocity.setY(velocity.getY() + acceleration.getY() * deltaTime);
     }
 
 /*créer une methode pour déterminer if currect object is in collision with other objects

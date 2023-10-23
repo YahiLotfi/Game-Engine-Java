@@ -20,9 +20,9 @@ public class CoreKernal {
     private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
 
-    public void startEngine(){
+    public void startEngine(String[] args){
         physicEngine = new PhysicEngine();
-        graphicEngine = new GraphicEngine();
+        graphicEngine = new GraphicEngine(args);
         start();
         gameLoop();
     }

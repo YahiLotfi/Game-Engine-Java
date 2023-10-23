@@ -7,9 +7,10 @@ public class Main {
 
   public static void main(String[] args) {
     CoreKernal coreKernal = new CoreKernal();
-    coreKernal.startEngine();
+    coreKernal.startEngine(args);
 
-    GameObject obj = coreKernal.createGameObject(100,100,100,100, Color.RED);
+    GameObject obj = coreKernal.createGameObject(1000,1000,2,2, Color.RED);
+    System.out.println(obj);
 
   }
 }

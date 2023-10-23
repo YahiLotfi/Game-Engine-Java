@@ -5,6 +5,8 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -39,26 +41,21 @@ public class GameFrame extends Application {
 
 
 		public GameFrame() {
-
-			Rectangle 	rectangle = new Rectangle(100, 100, Color.RED);
-
-			this.root = new Group(rectangle);
-			this.scene = new Scene(root, windowWidth, windowHeight);
-
 		}
 
 		@Override
 	    public void start(Stage primaryStage) {
-
-	        // Configure et affiche la fenêtre
-	        primaryStage.setTitle("Our Game");
-	        primaryStage.setScene(this.scene);
+			//Creating a Group object
+			this.root = new Group();
+			this.scene = new Scene(root, windowWidth, windowHeight);
+	        primaryStage.setScene(scene);
 			primaryStage.show();
+
 
 	    }
 
 
 	    public static void main(String[] args) {
-	        launch(args);
-	    }
+		launch(args);
+		}
 	}

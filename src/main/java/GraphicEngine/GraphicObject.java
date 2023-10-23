@@ -36,11 +36,11 @@ public class GraphicObject {
         this.color = color;
 		this.position =  new Vector2(x,y);
 		this.rectangle = new Rectangle(this.width, this.height);
-		rectangle.setFill(this.color);
 
 		// Place l'objet aux coordonnées spécifiées (x, y)
 		rectangle.setLayoutX(this.position.getX() - this.getCenterX());
 		rectangle.setLayoutY(this.position.getY() - this.getCenterY());
+		rectangle.setFill(this.color);
     }
 
 	public void updatePosition(float x, float y) {

@@ -26,15 +26,18 @@ public class CoreKernal {
 
 
     public void startEngine(String[] args){
+        System.out.println("Start Engine");
         physicEngine = new PhysicEngine();
+        System.out.println("Start Engine2");
+
         graphicEngine = new GraphicEngine(args);
+        System.out.println("Start Engine3");
+
     }
     public void startGame(){
         lastFrametime = System.currentTimeMillis();
         gameLoop();
-
-
-    }
+      }
     public void gameLoop(){
         while (gameIsRunning){
             deltaTime =  (lastFrametime - System.currentTimeMillis()) * timeScale;
@@ -52,6 +55,7 @@ public class CoreKernal {
         GraphicObject ge = graphicEngine.createGraphicObject(width , height, x, y,color);
         go.setPhysicObject(pe);
         go.setGraphicObject(ge);
+        gameObjects.add(go);
         return go;
     }
     public void updateGameObjects(){

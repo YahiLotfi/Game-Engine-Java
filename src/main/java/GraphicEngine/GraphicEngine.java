@@ -26,13 +26,14 @@ public class GraphicEngine {
     public void setFrame(GameFrame frame) {
         this.frame = frame;
     }
-
     private GameFrame frame;
 
     public GraphicEngine(String[] args) {
         graphicObjects = new ArrayList<>();
-        GameFrame.main(args);
         frame = new GameFrame();
+        GameFrame.main(args);
+        System.out.println("aseque rahou yelha9");
+
 
     }
 

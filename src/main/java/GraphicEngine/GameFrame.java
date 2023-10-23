@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -17,8 +18,8 @@ public class GameFrame extends Application {
 
 		int windowWidth = 800;
 		int windowHeight = 600;
-
-		private Group root = new Group() ;
+		Rectangle rec = new Rectangle(200,200,Color.RED);
+		private Group root = new Group(rec) ;
 
 		private Scene scene ;
 
@@ -27,6 +28,7 @@ public class GameFrame extends Application {
 		}
 
 		public void addObjToRoot(GraphicObject graphicObject) {
+			System.out.println("Ghiles mouloudia");
 			this.root.getChildren().add( graphicObject.getRectangle());
 		}
 
@@ -44,8 +46,10 @@ public class GameFrame extends Application {
 
 		@Override
 	    public void start(Stage primaryStage) {
+			System.out.println("Hii");
 			this.scene = new Scene(root, windowWidth, windowHeight);
 	        primaryStage.setScene(scene);
+			scene.setFill(Color.BLACK);
 			primaryStage.show();
 	    }
 

@@ -5,16 +5,16 @@ import java.util.List;
 
 public class PhysicEngine {
 
-    private List<PhysicObject> physicObjects;
+    private ArrayList<PhysicObject> physicObjects;
     //Pour faire une boucle pour mise a jrs
-    private boolean gameIsRunning = false;
     public PhysicEngine() {
         physicObjects = new ArrayList<>();
     }
 
-    public void createGameObject(float width , float height, float x, float y) {
+    public PhysicObject createPhysicObject(float width , float height, float x, float y) {
         PhysicObject physicObject = new PhysicObject(width , height, x, y );
         physicObjects.add(physicObject);
+        return physicObject;
     }
     public void removeGameObject1(float width, float height, float x, float y)
     {
@@ -34,7 +34,7 @@ public class PhysicEngine {
 // updatePosition
 // CheckColision
 //Handle Colision }
-public void UpdateEngine(float deltaTime){
+public void updateEngine(float deltaTime){
         for (PhysicObject physicObject : physicObjects) {
             // Mettez à jour la physique de chaque objet en fonction du temps écoulé (deltaTime).
             //on doit ajouter un parametre du temps à la methode update

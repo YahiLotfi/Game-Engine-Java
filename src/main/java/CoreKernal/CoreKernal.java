@@ -11,12 +11,26 @@ public class CoreKernal {
     private  float deltaTime;
     private float lastFrametime;
 
+    public CoreKernal() {
+        physicEngine = new PhysicEngine();
+        graphicEngine = new GraphicEngine();
+    }
+
     public ArrayList<GameObject> getGameObjects() {
         return gameObjects;
     }
 
     private PhysicEngine physicEngine;
     private GraphicEngine graphicEngine;
+
+    public PhysicEngine getPhysicEngine() {
+        return physicEngine;
+    }
+
+    public GraphicEngine getGraphicEngine() {
+        return graphicEngine;
+    }
+
     private boolean gameIsRunning=true;
 
     // la vitesse du passage du temps , il normal a 1  , quand on veut pauser le jeu on le mets a 0
@@ -25,24 +39,11 @@ public class CoreKernal {
     private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
 
-    public void startEngine(String[] args){
-        physicEngine = new PhysicEngine();
-        graphicEngine = new GraphicEngine(args);
-    }
-    public void startGame(){
-        lastFrametime = System.currentTimeMillis();
-        gameLoop();
-
-
-    }
     public void gameLoop(){
-        while (gameIsRunning){
             deltaTime =  (lastFrametime - System.currentTimeMillis()) * timeScale;
             lastFrametime = System.currentTimeMillis();
-            physicEngine.updateEngine(deltaTime);
+            physicEngine.updateEngine();
             updateGameObjects();
-
-        }
 
     }
     public GameObject createGameObject(float width , float height, float x, float y , Color color)
@@ -52,6 +53,7 @@ public class CoreKernal {
         GraphicObject ge = graphicEngine.createGraphicObject(width , height, x, y,color);
         go.setPhysicObject(pe);
         go.setGraphicObject(ge);
+        gameObjects.add(go);
         return go;
     }
     public void updateGameObjects(){

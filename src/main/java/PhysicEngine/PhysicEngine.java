@@ -13,7 +13,9 @@ public class PhysicEngine {
 
     public PhysicObject createPhysicObject(float width , float height, float x, float y) {
         PhysicObject physicObject = new PhysicObject(width , height, x, y );
+        System.out.println("here");
         physicObjects.add(physicObject);
+        System.out.println(physicObjects.size());
         return physicObject;
     }
     public void removeGameObject1(float width, float height, float x, float y)
@@ -30,15 +32,12 @@ public class PhysicEngine {
         }
     }
 
-//while(!gameIsRunning){
-// updatePosition
-// CheckColision
-//Handle Colision }
-public void updateEngine(float deltaTime){
+public void updateEngine(){
         for (PhysicObject physicObject : physicObjects) {
-            // Mettez à jour la physique de chaque objet en fonction du temps écoulé (deltaTime).
+            // Mettez à jour la physique de chaque objet en fonction du temps écoulé ( ).
             //on doit ajouter un parametre du temps à la methode update
-            physicObject.update(deltaTime);
+            physicObject.update( );
+            System.out.println(physicObject.getPosition().getX());
 
             // Vérifiez les collisions avec d'autres objets
 //            for (GameObject otherObject : gameObjects) {

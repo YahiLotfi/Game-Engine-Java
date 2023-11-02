@@ -1,6 +1,8 @@
 package GraphicEngine;
 
+import CoreKernal.CoreKernal;
 import CoreKernal.GameObject;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -9,15 +11,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class GameFrame extends Application {
 
-		int windowWidth = 800;
-		int windowHeight = 600;
+		public static GameFrame instance;
 
+		private static final double TARGET_FRAME_TIME = 1000.0 / 60.0; // Target frame time for 60 FPS
+		private long lastFrameTime = System.nanoTime();
+		private  static CoreKernal coreKernal;
 		private Group root = new Group() ;
 
 		private Scene scene ;
@@ -40,17 +47,68 @@ public class GameFrame extends Application {
 
 
 		public GameFrame() {
+			System.out.println("GameFrame afficher");
 		}
 
-		@Override
-	    public void start(Stage primaryStage) {
-			this.scene = new Scene(root, windowWidth, windowHeight);
-	        primaryStage.setScene(scene);
-			primaryStage.show();
-	    }
+	@Override
+	public void start(Stage primaryStage) {
+		instance = this;
+		addObjectsToRoot(coreKernal.getGraphicEngine().getGraphicObjects());
+		// Get the primary screen
+		Screen screen = Screen.getPrimary();
+
+		// Get the visual bounds of the screen
+		javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
+
+		// Create your JavaFX content here
+
+		// Set the stage's dimensions to match the screen's dimensions
+		primaryStage.setX(bounds.getMinX());
+		primaryStage.setY(bounds.getMinY());
+		primaryStage.setWidth(bounds.getWidth());
+		primaryStage.setHeight(bounds.getHeight());
+		primaryStage.setTitle("Constant Frame Rate Game");
+		scene = new Scene(root);
+
+		primaryStage.setScene(scene);
+		primaryStage.show();
+
+		// Set up the AnimationTimer for the game loop
+		new AnimationTimer() {
+			@Override
+			public void handle(long now) {
+				double deltaTime = (now - lastFrameTime) / 1_000_000.0; // Convert to milliseconds
+
+				if (deltaTime >= TARGET_FRAME_TIME) {
+					coreKernal.gameLoop();
+
+					lastFrameTime = now;
+
+					// Calculate time to sleep to achieve a constant frame rate
+					double sleepTime = TARGET_FRAME_TIME - deltaTime;
+					if (sleepTime > 0) {
+						try {
+							Thread.sleep((long) sleepTime);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		}.start();
+	}
+	void addObjectsToRoot(ArrayList<GraphicObject> objects){
+		for (GraphicObject obj : objects
+			 ) {
+			addObjToRoot(obj);
+		}
+
+	}
 
 
-	    public static void main(String[] args) {
-		launch(args);
+	    public static void main(String[] args , CoreKernal coreKernal)
+		{
+			GameFrame.coreKernal = coreKernal;
+			launch(args);
 		}
 	}

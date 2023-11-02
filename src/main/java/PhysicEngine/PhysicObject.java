@@ -24,7 +24,6 @@ public class PhysicObject {
     private float height;
     private float mass;
 
-    private  double deltaTime;
 
 
     public Vector2 getPosition() {
@@ -34,8 +33,8 @@ public class PhysicObject {
         this.width = width;
         this.height = height;
         this.position =  new Vector2(x,y);
-        this.velocity = new Vector2(0,0);
-        this.acceleration = new Vector2(0,0);
+        this.velocity = new Vector2(0.00001f,0);
+        this.acceleration = new Vector2(1,0);
     }
 
     public void setPosition(float x , float y)
@@ -69,20 +68,20 @@ public class PhysicObject {
 
 
 
-    public void update(float deltaTime) {
+    public void update( ) {
         // il faut ajouter le temps de mise jrs genre quand il doit faire le mise à jrs
         // Mettez à jour la vitesse en fonction de l'accélération
-            changeVelocity(acceleration,deltaTime);
+            changeVelocity(acceleration);
         // Mettez à jour la position en fonction de la vitesse
-            moveObject(velocity,deltaTime);
+            moveObject(velocity);
     }
-    private  void moveObject(Vector2 velocity ,float deltaTime){
-        position.setX(position.getX() +velocity.getX()* deltaTime);
-        position.setY(position.getY() +velocity.getY() * deltaTime);
+    private  void moveObject(Vector2 velocity){
+        position.setX(position.getX() +velocity.getX());
+        position.setY(position.getY() +velocity.getY() );
     }
-    private void changeVelocity(Vector2 acceleration , float deltaTime){
-        velocity.setX(velocity.getX() + acceleration.getX() * deltaTime);
-        velocity.setY(velocity.getY() + acceleration.getY() * deltaTime);
+    private void changeVelocity(Vector2 acceleration ){
+        velocity.setX(velocity.getX() + acceleration.getX()  );
+        velocity.setY(velocity.getY() + acceleration.getY()  );
     }
 
 /*créer une methode pour déterminer if currect object is in collision with other objects

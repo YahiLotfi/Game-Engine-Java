@@ -2,7 +2,6 @@ package GraphicEngine;
 
 import javafx.scene.paint.Color;
 
-import PhysicEngine.PhysicObject;
 
 
 import java.util.ArrayList;
@@ -19,28 +18,17 @@ public class GraphicEngine {
         this.graphicObjects = graphicObjects;
     }
 
-    public GameFrame getFrame() {
-        return frame;
-    }
 
-    public void setFrame(GameFrame frame) {
-        this.frame = frame;
-    }
 
     private GameFrame frame;
 
-    public GraphicEngine(String[] args) {
+    public GraphicEngine() {
         graphicObjects = new ArrayList<>();
-        GameFrame.main(args);
-        frame = new GameFrame();
-
     }
 
     public GraphicObject createGraphicObject(float width , float height, float x, float y,Color color) {
         GraphicObject graphicObject = new GraphicObject(width , height, x, y ,color);
         graphicObjects.add(graphicObject);
-        frame.addObjToRoot(graphicObject);
-
         return graphicObject;
 
     }

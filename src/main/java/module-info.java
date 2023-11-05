@@ -3,4 +3,6 @@ module GraphicEngine  {
     requires java.desktop;
 
     exports GraphicEngine ;
+    exports CoreKernal;
+    exports InputEngine;
 }

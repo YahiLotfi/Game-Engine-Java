@@ -1,16 +1,37 @@
 package GraphicEngine;
 
 import PhysicEngine.Vector2;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
+
+import java.util.Objects;
 
 public class GraphicObject {
 	private float width;
     private float height;
 	private Rectangle rectangle;
-    Color color;
-//    Color borderColor;
-//    double borderWidth;
+    private Color color;
+	private String texture;
+
+	private ImageView imageView;
+
+	public ImageView getImageView() {
+		return imageView;
+	}
+
+	public void setImageView(ImageView imageView) {
+		this.imageView = imageView;
+	}
+
+	public String getTexture() {
+		return texture;
+	}
+
+	public void setTexture(String texture) {
+		this.texture = texture;
+	}
 
 	private Vector2 position;
 
@@ -37,9 +58,6 @@ public class GraphicObject {
 		this.position =  new Vector2(x,y);
 		this.rectangle = new Rectangle(this.width, this.height);
 
-		// Place l'objet aux coordonnées spécifiées (x, y)
-		rectangle.setLayoutX(this.position.getX() - this.getCenterX());
-		rectangle.setLayoutY(this.position.getY() - this.getCenterY());
 		rectangle.setFill(this.color);
     }
 
@@ -48,6 +66,22 @@ public class GraphicObject {
 
 		this.rectangle.setLayoutX(x - this.getCenterX());
         this.rectangle.setLayoutY(y - this.getCenterY());
+		if(texture != null){
+			imageView.setTranslateX(x - this.getCenterX());
+			imageView.setTranslateY(y - this.getCenterY());
+		}
+
+	}
+
+	public ImageView createImageView(){
+		if(texture != null){
+			imageView =  new ImageView();
+			Image image = new Image(texture);
+			imageView.setImage(image);
+			rectangle.setFill(Color.rgb(0,0,0,0));
+			return imageView;
+		}
+		return null;
 	}
 
     public float getWidth() {

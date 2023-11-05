@@ -34,7 +34,7 @@ public class PhysicObject {
         this.height = height;
         this.position =  new Vector2(x,y);
         this.velocity = new Vector2(0.00001f,0);
-        this.acceleration = new Vector2(1,0);
+        this.acceleration = new Vector2(0,0);
     }
 
     public void setPosition(float x , float y)

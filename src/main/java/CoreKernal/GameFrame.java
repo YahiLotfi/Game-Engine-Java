@@ -1,22 +1,16 @@
-package GraphicEngine;
+package CoreKernal;
 
-import CoreKernal.CoreKernal;
-import CoreKernal.GameObject;
+import GraphicEngine.GraphicObject;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 public class GameFrame extends Application {
 
@@ -35,6 +29,10 @@ public class GameFrame extends Application {
 
 		public void addObjToRoot(GraphicObject graphicObject) {
 			this.root.getChildren().add( graphicObject.getRectangle());
+			if(graphicObject.getTexture() != null)
+			{
+				this.root.getChildren().add( graphicObject.createImageView());
+			}
 		}
 
 		public Scene getScene() {
@@ -69,6 +67,8 @@ public class GameFrame extends Application {
 		primaryStage.setHeight(bounds.getHeight());
 		primaryStage.setTitle("Constant Frame Rate Game");
 		scene = new Scene(root);
+
+		scene.setOnKeyPressed(coreKernal.getInputHandler().eventHandler);
 
 		primaryStage.setScene(scene);
 		primaryStage.show();

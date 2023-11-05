@@ -1,6 +1,7 @@
 package CoreKernal;
 
 import GraphicEngine.*;
+import InputEngine.InputHandler;
 import PhysicEngine.*;
 import javafx.scene.paint.Color;
 
@@ -14,6 +15,7 @@ public class CoreKernal {
     public CoreKernal() {
         physicEngine = new PhysicEngine();
         graphicEngine = new GraphicEngine();
+        inputHandler = new InputHandler();
     }
 
     public ArrayList<GameObject> getGameObjects() {
@@ -22,6 +24,11 @@ public class CoreKernal {
 
     private PhysicEngine physicEngine;
     private GraphicEngine graphicEngine;
+    private InputHandler inputHandler;
+
+    public InputHandler getInputHandler() {
+        return inputHandler;
+    }
 
     public PhysicEngine getPhysicEngine() {
         return physicEngine;
@@ -51,6 +58,16 @@ public class CoreKernal {
         GameObject go = new GameObject();
         PhysicObject pe = physicEngine.createPhysicObject(width , height, x, y );
         GraphicObject ge = graphicEngine.createGraphicObject(width , height, x, y,color);
+        go.setPhysicObject(pe);
+        go.setGraphicObject(ge);
+        gameObjects.add(go);
+        return go;
+    }
+    public GameObject createGameObject(float width , float height, float x, float y )
+    {
+        GameObject go = new GameObject();
+        PhysicObject pe = physicEngine.createPhysicObject(width , height, x, y );
+        GraphicObject ge = graphicEngine.createGraphicObject(width , height, x, y,Color.rgb(0,0,0,0));
         go.setPhysicObject(pe);
         go.setGraphicObject(ge);
         gameObjects.add(go);

@@ -5,19 +5,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-
 public class MyApplication extends javafx.application.Application {
-
   @Override
   public void start(Stage stage) {
-
-
     Scene scene = createScene();
-
     stage.setTitle("Loading an image");
-
     stage.setScene(scene);
-
     stage.show();
   }
 

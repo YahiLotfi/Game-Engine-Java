@@ -12,10 +12,11 @@ public class Main {
     GameObject snake = coreKernal.createGameObject(50,50,100,0, Color.RED);
     snake.getGraphicObject().setTexture("sample/Snake Sprites/head right.png");
     float speed  = 20f;
-    coreKernal.getInputHandler().addMapping(KeyBinds.VK_S , () -> snake.getPhysicObject().setVelocity(0 , speed));
-    coreKernal.getInputHandler().addMapping(KeyBinds.VK_W , () -> snake.getPhysicObject().setVelocity(0 , -speed));
-    coreKernal.getInputHandler().addMapping(KeyBinds.VK_D , () -> snake.getPhysicObject().setVelocity(speed , 0));
-    coreKernal.getInputHandler().addMapping(KeyBinds.VK_A , () -> snake.getPhysicObject().setVelocity(-speed , 0));
+    snake.getPhysicObject().setVelocity(speed , 0);
+    coreKernal.getInputHandler().addMapping(KeyBinds.VK_DOWN , () -> snake.getPhysicObject().setVelocity(0 , speed));
+    coreKernal.getInputHandler().addMapping(KeyBinds.VK_UP, () -> snake.getPhysicObject().setVelocity(0 , -speed));
+    coreKernal.getInputHandler().addMapping(KeyBinds.VK_RIGHT , () -> snake.getPhysicObject().setVelocity(speed , 0));
+    coreKernal.getInputHandler().addMapping(KeyBinds.VK_LEFT , () -> snake.getPhysicObject().setVelocity(-speed , 0));
     GameFrame.main(args , coreKernal );
 
   }

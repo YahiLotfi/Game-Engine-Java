@@ -1,12 +1,10 @@
-package GraphicEngine;
+package graphicEngine;
 
-import PhysicEngine.Vector2;
+import physicEngine.Vector2;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
-
-import java.util.Objects;
 
 public class GraphicObject {
 	private float width;

@@ -1,7 +1,7 @@
-package CoreKernal;
+package coreKernel;
 
-import GraphicEngine.GraphicObject;
-import PhysicEngine.PhysicObject;
+import graphicEngine.GraphicObject;
+import physicEngine.PhysicObject;
 
 public class GameObject {
     private PhysicObject physicObject;

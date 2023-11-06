@@ -1,4 +1,4 @@
-package PhysicEngine;
+package physicEngine;
 
 public class Vector2 {
     private float x;

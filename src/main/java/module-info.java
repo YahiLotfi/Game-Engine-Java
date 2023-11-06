@@ -2,7 +2,7 @@ module GraphicEngine  {
   requires javafx.controls;
     requires java.desktop;
 
-    exports GraphicEngine ;
-    exports CoreKernal;
-    exports InputEngine;
+    exports graphicEngine;
+    exports coreKernel;
+    exports inputEngine;
 }

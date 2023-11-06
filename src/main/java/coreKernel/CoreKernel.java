@@ -1,13 +1,13 @@
-package CoreKernal;
+package coreKernel;
 
-import GraphicEngine.*;
-import InputEngine.InputHandler;
-import PhysicEngine.*;
+import graphicEngine.*;
+import inputEngine.InputHandler;
+import physicEngine.*;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
-public class CoreKernal {
+public class CoreKernel {
 
     private  float deltaTime;
     private float lastFrametime;
@@ -15,7 +15,7 @@ public class CoreKernal {
     private GraphicEngine graphicEngine;
     private InputHandler inputHandler;
     private boolean gameIsRunning=true;
-    public CoreKernal() {
+    public CoreKernel() {
         physicEngine = new PhysicEngine();
         graphicEngine = new GraphicEngine();
         inputHandler = new InputHandler();
@@ -26,9 +26,11 @@ public class CoreKernal {
     public InputHandler getInputHandler() {
         return inputHandler;
     }
-    public PhysicEngine getPhysicEngine() {
+    /* public physicEngine getPhysicEngine() {
         return physicEngine;
     }
+
+     */
     public GraphicEngine getGraphicEngine() {
         return graphicEngine;
     }

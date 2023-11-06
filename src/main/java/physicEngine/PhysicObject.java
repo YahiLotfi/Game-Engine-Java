@@ -1,4 +1,4 @@
-package PhysicEngine;
+package physicEngine;
 public class PhysicObject {
     //Déclaration des variables
     private Vector2 position;

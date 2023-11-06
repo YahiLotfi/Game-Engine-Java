@@ -1,4 +1,4 @@
-package InputEngine;
+package inputEngine;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

@@ -1,9 +1,5 @@
-package GraphicEngine;
-
+package graphicEngine;
 import javafx.scene.paint.Color;
-
-
-
 import java.util.ArrayList;
 public class GraphicEngine {
 
@@ -18,8 +14,6 @@ public class GraphicEngine {
         this.graphicObjects = graphicObjects;
     }
 
-
-
     private GameFrame frame;
 
     public GraphicEngine() {
@@ -31,9 +25,6 @@ public class GraphicEngine {
         graphicObjects.add(graphicObject);
         return graphicObject;
     }
-
-
-
     public void UpdateEngine(){
 
 

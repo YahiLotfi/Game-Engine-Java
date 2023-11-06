@@ -1,4 +1,4 @@
-package PhysicEngine;
+package physicEngine;
 
 import java.util.ArrayList;
 
@@ -15,6 +15,7 @@ public class PhysicEngine {
         System.out.println(physicObjects.size());
         return physicObject;
     }
+    /*
     public void removeGameObject1(float width, float height, float x, float y)
     {
         // Iterate through the list of game objects
@@ -28,6 +29,8 @@ public class PhysicEngine {
             }
         }
     }
+
+     */
     /* updateEngine mettre à jour la physique de tous les objets du
     jeu stockés dans la liste physicObjects*/
     public void updateEngine(){

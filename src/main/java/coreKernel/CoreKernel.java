@@ -1,14 +1,14 @@
-package CoreKernal;
+package coreKernel;
 
-import GraphicEngine.*;
-import InputEngine.InputHandler;
-import PhysicEngine.*;
+import graphicEngine.*;
+import inputEngine.InputHandler;
 import javafx.scene.Scene;
+import physicEngine.*;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
-public class CoreKernal {
+public class CoreKernel {
 
     private  float deltaTime;
     private float lastFrametime;
@@ -16,7 +16,7 @@ public class CoreKernal {
     private GraphicEngine graphicEngine;
     private InputHandler inputHandler;
     private boolean gameIsRunning=true;
-    public CoreKernal() {
+    public CoreKernel() {
         physicEngine = new PhysicEngine();
         graphicEngine = new GraphicEngine();
         inputHandler = new InputHandler();
@@ -27,16 +27,23 @@ public class CoreKernal {
     public InputHandler getInputHandler() {
         return inputHandler;
     }
-    public PhysicEngine getPhysicEngine() {
+    /* public physicEngine getPhysicEngine() {
         return physicEngine;
     }
+
+     */
     public GraphicEngine getGraphicEngine() {
         return graphicEngine;
     }
     // la vitesse du passage du temps, il normal a 1, quand on veut pauser le jeu on le mets a 0
     private  float timeScale=1;
     private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
-
+    public void withScene(Scene scene){
+        scene.setOnKeyPressed(inputHandler.eventHandler);
+    }
+    public void startGame(String [] args){
+        GameFrame.main(args , graphicEngine ,this::withScene,this::gameLoop );
+    }
      /* La fonction gameLoop() est la fonction principale d'une boucle de jeu.
     Elle est appelée à chaque frame du jeu et est responsable de mettre à jour le jeu.*/
     public void gameLoop(){
@@ -44,13 +51,6 @@ public class CoreKernal {
             lastFrametime = System.currentTimeMillis();
             physicEngine.updateEngine();// appelle la méthode updateEngine() du moteur physique pour mettre à jour le mouvement des objets du jeu.
             updateGameObjects();
-    }
-
-    private void withScene(Scene scene){
-        scene.setOnKeyPressed(inputHandler.eventHandler);
-    }
-    public void startGame(String [] args){
-        GameFrame.main(args,graphicEngine,this::withScene,this::gameLoop);
     }
     public GameObject createGameObject(float width , float height, float x, float y , Color color)
     {

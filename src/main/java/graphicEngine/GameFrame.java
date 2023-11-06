@@ -1,5 +1,5 @@
-package GraphicEngine;
-
+package graphicEngine;
+import graphicEngine.GraphicObject;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -48,7 +48,7 @@ public class GameFrame extends Application {
 		 */
 		@Override
 		public void start(Stage primaryStage) {
-			//définit l'instance de la classe CoreKernal comme étant l'instance actuelle.
+			//définit l'instance de la classe coreKernel comme étant l'instance actuelle.
 			instance = this;
 			//Ajoute tous les objets graphiques du moteur graphique à la racine de la scène.
 			addObjectsToRoot(graphicEngine.getGraphicObjects());
@@ -76,7 +76,9 @@ public class GameFrame extends Application {
 				double deltaTime = (now - lastFrameTime) / 1_000_000.0; // Convert to milliseconds
 
 				if (deltaTime >= TARGET_FRAME_TIME) {
+
 					gameLoop.run();
+
 					lastFrameTime = now;
 
 					// Calculate time to sleep to achieve a constant frame rate
@@ -101,6 +103,7 @@ public class GameFrame extends Application {
 			addObjToRoot(obj);
 		}
 	}
+
 	    public static void main(String[] args , GraphicEngine graphicEngine , Consumer<Scene> sceneConsumer , Runnable gameloop)
 		{
 			GameFrame.graphicEngine = graphicEngine;

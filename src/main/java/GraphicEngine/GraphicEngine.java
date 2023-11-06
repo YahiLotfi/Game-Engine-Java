@@ -1,6 +1,5 @@
 package GraphicEngine;
 
-import CoreKernal.GameFrame;
 import javafx.scene.paint.Color;
 
 

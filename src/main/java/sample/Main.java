@@ -1,7 +1,6 @@
 package sample;
 
 import CoreKernal.*;
-import CoreKernal.GameFrame;
 import InputEngine.KeyBinds;
 import javafx.scene.paint.Color;
 
@@ -17,7 +16,8 @@ public class Main {
     coreKernal.getInputHandler().addMapping(KeyBinds.VK_UP, () -> snake.getPhysicObject().setVelocity(0 , -speed));
     coreKernal.getInputHandler().addMapping(KeyBinds.VK_RIGHT , () -> snake.getPhysicObject().setVelocity(speed , 0));
     coreKernal.getInputHandler().addMapping(KeyBinds.VK_LEFT , () -> snake.getPhysicObject().setVelocity(-speed , 0));
-    GameFrame.main(args , coreKernal );
+    //GameFrame.main(args , coreKernal );
+    coreKernal.startGame(args);
 
   }
 }

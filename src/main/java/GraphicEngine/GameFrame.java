@@ -1,6 +1,5 @@
-package CoreKernal;
+package GraphicEngine;
 
-import GraphicEngine.GraphicObject;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -8,12 +7,16 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class GameFrame extends Application {
 		public static GameFrame instance;
 		private static final double TARGET_FRAME_TIME = 1000.0 / 60.0; // Target frame time for 60 FPS
 		private long lastFrameTime = System.nanoTime();
-		private  static CoreKernal coreKernal;
+		private  static GraphicEngine graphicEngine;
+		private static Consumer<Scene> sceneConsumer;
+		private static  Runnable gameLoop;
+
 		private Group root = new Group() ;
 		private Scene scene ;
 
@@ -48,7 +51,7 @@ public class GameFrame extends Application {
 			//définit l'instance de la classe CoreKernal comme étant l'instance actuelle.
 			instance = this;
 			//Ajoute tous les objets graphiques du moteur graphique à la racine de la scène.
-			addObjectsToRoot(coreKernal.getGraphicEngine().getGraphicObjects());
+			addObjectsToRoot(graphicEngine.getGraphicObjects());
 			// Get the primary screen
 			Screen screen = Screen.getPrimary();
 			// Get the visual bounds of the screen
@@ -62,7 +65,7 @@ public class GameFrame extends Application {
 			primaryStage.setHeight(bounds.getHeight());
 			primaryStage.setTitle("Constant Frame Rate Game");
 			scene = new Scene(root);
-			scene.setOnKeyPressed(coreKernal.getInputHandler().eventHandler);
+			sceneConsumer.accept(scene);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
@@ -73,7 +76,7 @@ public class GameFrame extends Application {
 				double deltaTime = (now - lastFrameTime) / 1_000_000.0; // Convert to milliseconds
 
 				if (deltaTime >= TARGET_FRAME_TIME) {
-					coreKernal.gameLoop();
+					gameLoop.run();
 					lastFrameTime = now;
 
 					// Calculate time to sleep to achieve a constant frame rate
@@ -98,9 +101,11 @@ public class GameFrame extends Application {
 			addObjToRoot(obj);
 		}
 	}
-	    public static void main(String[] args , CoreKernal coreKernal)
+	    public static void main(String[] args , GraphicEngine graphicEngine , Consumer<Scene> sceneConsumer , Runnable gameloop)
 		{
-			GameFrame.coreKernal = coreKernal;
+			GameFrame.graphicEngine = graphicEngine;
+			GameFrame.sceneConsumer = sceneConsumer;
+			GameFrame.gameLoop = gameloop;
 			launch(args);
 		}
 }

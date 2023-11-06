@@ -3,6 +3,7 @@ package CoreKernal;
 import GraphicEngine.*;
 import InputEngine.InputHandler;
 import PhysicEngine.*;
+import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -43,6 +44,13 @@ public class CoreKernal {
             lastFrametime = System.currentTimeMillis();
             physicEngine.updateEngine();// appelle la méthode updateEngine() du moteur physique pour mettre à jour le mouvement des objets du jeu.
             updateGameObjects();
+    }
+
+    private void withScene(Scene scene){
+        scene.setOnKeyPressed(inputHandler.eventHandler);
+    }
+    public void startGame(String [] args){
+        GameFrame.main(args,graphicEngine,this::withScene,this::gameLoop);
     }
     public GameObject createGameObject(float width , float height, float x, float y , Color color)
     {

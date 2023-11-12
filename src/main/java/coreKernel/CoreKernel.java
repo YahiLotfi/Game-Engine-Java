@@ -16,6 +16,7 @@ public class CoreKernel {
     private GraphicEngine graphicEngine;
     private InputHandler inputHandler;
     private boolean gameIsRunning=true;
+    public Runnable update;
     public CoreKernel() {
         physicEngine = new PhysicEngine();
         graphicEngine = new GraphicEngine();
@@ -49,6 +50,7 @@ public class CoreKernel {
     public void gameLoop(){
             deltaTime =  (lastFrametime - System.currentTimeMillis()) * timeScale;// Calcule le temps écoulé depuis la dernière frame.
             lastFrametime = System.currentTimeMillis();
+            update.run();
             physicEngine.updateEngine();// appelle la méthode updateEngine() du moteur physique pour mettre à jour le mouvement des objets du jeu.
             updateGameObjects();
     }

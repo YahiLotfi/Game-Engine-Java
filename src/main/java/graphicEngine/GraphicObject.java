@@ -5,7 +5,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
-
 public class GraphicObject {
 	private float width;
     private float height;
@@ -77,9 +76,17 @@ public class GraphicObject {
 			Image image = new Image(texture);
 			imageView.setImage(image);
 			rectangle.setFill(Color.rgb(0,0,0,0));
+
 			return imageView;
 		}
 		return null;
+	}
+	public void rescaleImageView(float width , float height){
+		imageView.setFitWidth(width);
+		imageView.setFitHeight(height);
+		imageView.setPreserveRatio(false);
+		System.out.println(imageView.getFitHeight());
+
 	}
 
     public float getWidth() {
@@ -116,12 +123,7 @@ public class GraphicObject {
         // Calcul du centre en y (ordonnée)
         return height / 2;
     }
-    
-    public Rectangle getBounds(float x, float y) {
-		float topLeftX = x - getCenterX();
-		float topLeftY = y - getCenterY();
-        return new Rectangle(topLeftX, topLeftY, width, height);
-    }
+
 
 
 

@@ -30,6 +30,7 @@ public class PhysicObject {
         this.position = new Vector2(x, y);
         this.velocity = new Vector2(0.00001f, 0);
         this.acceleration = new Vector2(0, 0);
+        this.bounds = new Bounds(width, height, x, y);
     }
 
     public void setPosition(float x, float y) {
@@ -88,6 +89,15 @@ public class PhysicObject {
     private void changeVelocity(Vector2 acceleration) {
         velocity.setX(velocity.getX() + acceleration.getX());
         velocity.setY(velocity.getY() + acceleration.getY());
+    }
+
+
+
+    private  Bounds bounds ;
+
+    public Bounds getBounds() {
+        bounds.updateBounds(width, height, position.getX(), position.getY());
+        return bounds;
     }
 
 }

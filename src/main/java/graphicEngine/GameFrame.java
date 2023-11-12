@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 
 public class GameFrame extends Application {
 		public static GameFrame instance;
-		private static final double TARGET_FRAME_TIME = 1000.0 / 60.0; // Target frame time for 60 FPS
+		private static final double TARGET_FRAME_TIME = 1000.0 / 5.0; // Target frame time for 60 FPS
 		private long lastFrameTime = System.nanoTime();
 		private  static GraphicEngine graphicEngine;
 		private static Consumer<Scene> sceneConsumer;

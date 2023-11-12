@@ -36,7 +36,6 @@ public class PhysicEngine {
     public void updateEngine(){
         for (PhysicObject physicObject : physicObjects) {
             physicObject.update( );
-            System.out.println(physicObject.getPosition().getX());
 
         }
 

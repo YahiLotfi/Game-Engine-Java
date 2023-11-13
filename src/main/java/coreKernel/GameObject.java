@@ -12,7 +12,7 @@ public class GameObject {
 
     public void updateGameObject(){
         graphicObject.updatePosition(physicObject.getPosition().getX(),physicObject.getPosition().getY());
-        graphicObject.rescaleImageView(physicObject.getWidth(),physicObject.getHeight());
+        if(getGraphicObject().getImageView() != null) graphicObject.rescaleImageView(physicObject.getWidth(),physicObject.getHeight());
     }
     public PhysicObject getPhysicObject() {
         return physicObject;

@@ -11,12 +11,15 @@ import java.util.Random;
 public class Main {
 
   static CoreKernel coreKernel = new CoreKernel();
-  static GameObject snake = coreKernel.createGameObject(50, 50, 100, 0, Color.RED);
+  static GameObject snake = coreKernel.createGameObject(50, 50, 960, 540, Color.RED);
 
   static ArrayList<GameObject> snakeBody = new ArrayList<>();
   static float speed = 20f;
   static int gridSize = 20; // Size of the grid
+  static int wallSize = 29; // Size of the wall
+  static ArrayList<GameObject> walls = new ArrayList<>();
   static ArrayList<GameObject> apples = new ArrayList<>();
+  static GameObject background;
   static int appleSize = 50;
   public static void main(String[] args) {
     snake.getGraphicObject().setTexture("sample/Snake Sprites/head right.png");
@@ -28,6 +31,8 @@ public class Main {
     for (int i = 0; i < 3; i++) {
       spawnApple();
     }
+    spawnWalls();
+    spawnBackground();
 
     coreKernel.getInputHandler().addMapping(KeyBinds.VK_DOWN, () -> snake.getPhysicObject().setVelocity(0, speed));
     coreKernel.getInputHandler().addMapping(KeyBinds.VK_UP, () -> snake.getPhysicObject().setVelocity(0, -speed));
@@ -157,6 +162,40 @@ public class Main {
     apple.getGraphicObject().setTexture("sample/Snake Sprites/apple.png"); // Set the texture for the apple
 
     apples.add(apple);
+  }
+  static void spawnBackground() {
+    background = coreKernel.createGameObject(1920, 1080, 0, 0, Color.TRANSPARENT); // Adjust size as needed
+    background.getGraphicObject().setTexture("sample/Environement/wp2635955.png");
+    // Set the texture for the background image
+  }
+  static void spawnWalls() {
+    // Top wall
+    for (int x = 0; x < 1920; x += wallSize) {
+      GameObject wall = coreKernel.createGameObject(wallSize, wallSize, x, 0, Color.GRAY);
+      wall.getGraphicObject().setTexture("sample/Environement/wall.png");
+      walls.add(wall);
+    }
+
+    // Bottom wall
+    for (int x = 0; x < 1920; x += wallSize) {
+      GameObject wall = coreKernel.createGameObject(wallSize, wallSize, x, 1080 - wallSize, Color.GRAY);
+      wall.getGraphicObject().setTexture("sample/Environement/wall.png");
+      walls.add(wall);
+    }
+
+    // Left wall
+    for (int y = wallSize; y < 1080 - wallSize; y += wallSize) {
+      GameObject wall = coreKernel.createGameObject(wallSize, wallSize, 0, y, Color.GRAY);
+      wall.getGraphicObject().setTexture("sample/Environement/wall.png");
+      walls.add(wall);
+    }
+
+    // Right wall
+    for (int y = wallSize; y < 1080 - wallSize; y += wallSize) {
+      GameObject wall = coreKernel.createGameObject(wallSize, wallSize, 1920 - wallSize, y, Color.GRAY);
+      wall.getGraphicObject().setTexture("sample/Environement/wall.png");
+      walls.add(wall);
+    }
   }
 //  public void checkCollisions{
 //    for(GameObject apple : apples){

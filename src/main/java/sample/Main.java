@@ -13,7 +13,7 @@ public class Main {
   static GameObject snake = coreKernel.createGameObject(50, 50, 100, 0, Color.RED);
 
   static ArrayList<GameObject> snakeBody = new ArrayList<>();
-  static float speed = 10f;
+  static float speed = 20f;
   static int gridSize = 20; // Size of the grid
 
   public static void main(String[] args) {
@@ -66,6 +66,31 @@ public class Main {
   private static void moveToGridPosition(GameObject gameObject, float x, float y) {
     float newX = Math.round(x / gridSize) * gridSize;
     float newY = Math.round(y / gridSize) * gridSize;
+
+    // Ensure the bounds are updated based on the new position
+    Bounds bounds = gameObject.getPhysicObject().getBounds();
+    bounds.updateBounds(gameObject.getPhysicObject().getWidth(), gameObject.getPhysicObject().getHeight(), newX, newY);
+
+    // Update the position based on the direction of the snake
+    float velocityX = gameObject.getPhysicObject().getVelocity().getX();
+    float velocityY = gameObject.getPhysicObject().getVelocity().getY();
+
+    // Adjust the position based on the direction
+    if (velocityX > 0) { // Moving right
+      newX = Math.min(newX, bounds.getMiddleRightX() - gameObject.getPhysicObject().getWidth());
+    } else if (velocityX < 0) { // Moving left
+      newX = Math.max(newX, bounds.getMiddleLeftX());
+    }
+
+    if (velocityY > 0) { // Moving down
+      newY = Math.min(newY, bounds.getMiddleDownY() - gameObject.getPhysicObject().getHeight());
+    } else if (velocityY < 0) { // Moving up
+      newY = Math.max(newY, bounds.getMiddleTopY());
+    }
+
+    // Update the position
     gameObject.getPhysicObject().setPosition(newX, newY);
   }
+
+
 }

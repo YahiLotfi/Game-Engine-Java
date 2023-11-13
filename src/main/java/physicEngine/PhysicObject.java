@@ -32,6 +32,8 @@ public class PhysicObject {
         this.acceleration = new Vector2(0, 0);
         this.bounds = new Bounds(width, height, x, y);
     }
+public float getRight(){return this.getPosition().getX()+this.width;}
+    public float getBottom(){return this.getPosition().getY()+this.height;}
 
     public void setPosition(float x, float y) {
         this.position = new Vector2(x, y);

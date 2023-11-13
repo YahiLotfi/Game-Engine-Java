@@ -4,6 +4,7 @@ import coreKernel.*;
 import inputEngine.KeyBinds;
 import javafx.scene.paint.Color;
 import physicEngine.Bounds;
+import physicEngine.PhysicEngine;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -32,7 +33,7 @@ public class Main {
       spawnApple();
     }
     spawnWalls();
-    spawnBackground();
+
 
     coreKernel.getInputHandler().addMapping(KeyBinds.VK_DOWN, () -> snake.getPhysicObject().setVelocity(0, speed));
     coreKernel.getInputHandler().addMapping(KeyBinds.VK_UP, () -> snake.getPhysicObject().setVelocity(0, -speed));
@@ -61,6 +62,22 @@ public class Main {
         }
           // Update the position of the head based on its velocity
           snake.getPhysicObject().update();
+
+        // Vérifier la collision entre la tête du serpent et les murs
+        for (GameObject wall : walls) {
+          if (PhysicEngine.checkCollision(snake.getPhysicObject(), wall.getPhysicObject())) {
+            System.out.println("Collision avec un mur!");
+
+          }
+        }
+
+        // Vérifier la collision entre la tête du serpent et les fruits
+        for (GameObject apple : apples) {
+          if (PhysicEngine.checkCollision(snake.getPhysicObject(), apple.getPhysicObject())) {
+            System.out.println("Collision avec une pomme!");
+          }
+        }
+
       }
     };
   }

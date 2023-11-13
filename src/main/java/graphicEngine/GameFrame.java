@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 
 public class GameFrame extends Application {
 		public static GameFrame instance;
-		private static final double TARGET_FRAME_TIME = 1000.0 / 5.0; // Target frame time for 60 FPS
+		private static final double TARGET_FRAME_TIME = 1000.0 / 20.0; // Target frame time for 60 FPS
 		private long lastFrameTime = System.nanoTime();
 		private  static GraphicEngine graphicEngine;
 		private static Consumer<Scene> sceneConsumer;
@@ -61,8 +61,8 @@ public class GameFrame extends Application {
 			// Set the stage's dimensions to match the screen's dimensions
 			primaryStage.setX(bounds.getMinX());
 			primaryStage.setY(bounds.getMinY());
-			primaryStage.setWidth(bounds.getWidth());
-			primaryStage.setHeight(bounds.getHeight());
+			primaryStage.setWidth(1920);
+			primaryStage.setHeight(1080);
 			primaryStage.setTitle("Constant Frame Rate Game");
 			scene = new Scene(root);
 			sceneConsumer.accept(scene);
@@ -99,7 +99,7 @@ public class GameFrame extends Application {
 	et ajoute chaque objet à la racine de la scène.*/
 	void addObjectsToRoot(ArrayList<GraphicObject> objects){
 		for (GraphicObject obj : objects
-			 ) {
+		) {
 			addObjToRoot(obj);
 		}
 	}

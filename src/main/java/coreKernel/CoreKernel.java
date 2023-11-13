@@ -17,6 +17,8 @@ public class CoreKernel {
     private InputHandler inputHandler;
     private boolean gameIsRunning=true;
     public Runnable update;
+    public double sceneWidth;
+    public double sceneHeight;
     public CoreKernel() {
         physicEngine = new PhysicEngine();
         graphicEngine = new GraphicEngine();
@@ -28,11 +30,10 @@ public class CoreKernel {
     public InputHandler getInputHandler() {
         return inputHandler;
     }
-    /* public physicEngine getPhysicEngine() {
-        return physicEngine;
-    }
+//    public physicEngine getPhysicEngine() {
+//        return physicEngine;
+//    }
 
-     */
     public GraphicEngine getGraphicEngine() {
         return graphicEngine;
     }
@@ -41,6 +42,8 @@ public class CoreKernel {
     private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     public void withScene(Scene scene){
         scene.setOnKeyPressed(inputHandler.eventHandler);
+        sceneWidth = scene.getWidth();
+        sceneHeight = scene.getHeight();
     }
     public void startGame(String [] args){
         GameFrame.main(args , graphicEngine ,this::withScene,this::gameLoop );

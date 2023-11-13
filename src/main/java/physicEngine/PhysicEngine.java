@@ -15,28 +15,36 @@ public class PhysicEngine {
         System.out.println(physicObjects.size());
         return physicObject;
     }
-    /*
-    public void removeGameObject1(float width, float height, float x, float y)
-    {
-        // Iterate through the list of game objects
-        for (PhysicObject physicObject : physicObjects) {
-            if (physicObject.getWidth() == width &&
-                    physicObject.getHeight() == height &&
-                    physicObject.getPosition().getX() == x &&
-                    physicObject.getPosition().getY() == y) {// vierfier les paraemtres des objets à supprimer
-                physicObjects.remove(physicObject);// how to delete the object completely !!!! can we use destroy !!!
-                break;
-            }
-        }
-    }
 
-     */
-    /* updateEngine mettre à jour la physique de tous les objets du
-    jeu stockés dans la liste physicObjects*/
+    public boolean checkCollision (PhysicObject object1, PhysicObject object2) {
+        Bounds BoundsObject1 = object1.getBounds();
+        Bounds BoundsObject2 = object2.getBounds();
+        /*verifier tous les cas déclanchant une collision entre deux objet*/
+        /*retourner true si un de ces cas se produit, false sinon*/
+        return (
+                /*Ce cas vérifie si le côté droit de BoundsObject1 est à droite du côté gauche de BoundsObject2
+                 et si le point médian en haut de BoundsObject1 est en dessus du point médian en bas de
+                 BoundsObject2. Cela peut se produire si l'Object1 entre en collision avec
+               le côté droit et la partie inférieure de l'Object2. */
+                (BoundsObject1.getMiddleRightX() > BoundsObject2.getMiddleLeftX() &
+                        BoundsObject1.getMiddleTopY() < BoundsObject2.getMiddleDownY()) ||
+             /*cas ou  l'Object1 entre en collision avec le côté gauche et la
+             partie inférieure de l'Object2. */
+                        (BoundsObject1.getMiddleLeftX()<BoundsObject2.getMiddleRightX() &
+                                BoundsObject1.getMiddleTopY() < BoundsObject2.getMiddleDownY()) ||
+            /*cas ou  l'Object1 entre en collision avec le côté droit et la
+             partie supérieur de l'Object2. */
+                        (BoundsObject1.getMiddleRightX() > BoundsObject2.getMiddleLeftX()&
+                                BoundsObject1.getMiddleDownY() > BoundsObject2.getMiddleTopY())  ||
+            /*cas ou  l'Object1 entre en collision avec le côté gauche et la
+             partie supérieur de l'Object2. */
+                        (BoundsObject1.getMiddleLeftX()<BoundsObject2.getMiddleRightX() &
+                                BoundsObject1.getMiddleDownY() > BoundsObject2.getMiddleTopY()  )
+        );
+    }
     public void updateEngine(){
         for (PhysicObject physicObject : physicObjects) {
             physicObject.update( );
-
         }
 
     }

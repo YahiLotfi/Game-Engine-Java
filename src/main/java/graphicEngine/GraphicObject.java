@@ -1,6 +1,4 @@
 package graphicEngine;
-
-import physicEngine.Vector2;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -81,11 +79,13 @@ public class GraphicObject {
 		}
 		return null;
 	}
+	public void updateTexture(String texture){
+		imageView.setImage(new Image(texture));
+	}
 	public void rescaleImageView(float width , float height){
 		imageView.setFitWidth(width);
 		imageView.setFitHeight(height);
 		imageView.setPreserveRatio(false);
-		System.out.println(imageView.getFitHeight());
 
 	}
 

@@ -18,8 +18,8 @@ public class Main {
   static GameObject snake = coreKernel.createGameObject(50, 50, 200, 200, Color.RED);
 
   static ArrayList<GameObject> snakeBody = new ArrayList<>();
-  static float speed = 10f;
-  static int gridSize = 10; // Size of the grid
+  static float speed = 20f;
+  static int gridSize = 20; // Size of the grid
   static int wallSize = 40; // Size of the wall
   static ArrayList<GameObject> walls = new ArrayList<>();
   static ArrayList<GameObject> apples = new ArrayList<>();
@@ -99,7 +99,7 @@ public class Main {
           //snakeBody.get(snakeBody.size()).getPhysicObject()
           if (PhysicEngine.checkCollisionSelf(Body.getPhysicObject(), snake.getPhysicObject())) {
             System.out.println("Collision snake avec son corps!");
-
+            gameOver();
           }
         }
 
@@ -108,7 +108,7 @@ public class Main {
         for (GameObject wall : walls) {
           if (PhysicEngine.checkCollision(snake.getPhysicObject(), wall.getPhysicObject())) {
             System.out.println("Collision avec un mur!");
-
+            gameOver();
           }
         }
 
@@ -229,7 +229,7 @@ public class Main {
       y = random.nextInt((screenHeight - wallSize) / wallSize + 1) * wallSize;
 
       System.out.println("Generated coordinates: x = " + x + ", y = " + y);
-    } while (x <= (gridSize + wallSize/2) || x >= screenWidth - (wallSize + wallSize/2) || y <= (wallSize + wallSize/2) || y >= screenHeight - (wallSize + wallSize/2));
+    } while (x <= (gridSize + wallSize/2) || x >= screenWidth - (wallSize + wallSize/2) || y <= (wallSize + wallSize/2) || y >= screenHeight - wallSize*2);
 
     // Create a new apple GameObject
     GameObject apple = coreKernel.createGameObject( appleSize, appleSize,x, y, Color.YELLOW);
@@ -270,6 +270,12 @@ public class Main {
       wall.getGraphicObject().setTexture("sample/Environement/wall.png");
       walls.add(wall);
     }
+  }
+  static void gameOver(){
+    GameObject gameOver = coreKernel.createGameObject(screenWidth,screenHeight,screenWidth/2,screenHeight/2);
+    gameOver.getGraphicObject().setTexture("sample/HUD/gameover.png");
+    gameOver.getGraphicObject().rescaleImageView(screenWidth,screenHeight);
+    coreKernel.setGameIsRunning(false);
   }
 
 //  public void checkCollisions{

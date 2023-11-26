@@ -83,10 +83,11 @@ public class GraphicObject {
 		imageView.setImage(new Image(texture));
 	}
 	public void rescaleImageView(float width , float height){
-		imageView.setFitWidth(width);
-		imageView.setFitHeight(height);
-		imageView.setPreserveRatio(false);
-
+		if(imageView != null) {
+			imageView.setFitHeight(height);
+			imageView.setFitWidth(width);
+			imageView.setPreserveRatio(false);
+		}
 	}
 
     public float getWidth() {

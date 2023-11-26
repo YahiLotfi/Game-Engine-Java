@@ -204,7 +204,7 @@ public class Main {
 
   private static void addBodySegment() {
     GameObject newSegment = coreKernel.createGameObject(50, 50, 0, 0, Color.GREEN);
-    newSegment.getGraphicObject().setTexture("sample/Snake Sprites/right left.png");
+    newSegment.getGraphicObject().setTexture("src/main/resources/sample/Snake Sprites/right left.png");
     snakeBody.add(newSegment);
   }
 
@@ -245,13 +245,13 @@ public class Main {
     float velocityY = snake.getPhysicObject().getVelocity().getY();
 
     if (velocityX > 0) {
-      snake.getGraphicObject().updateTexture("sample/Snake Sprites/head right.png");
+      snake.getGraphicObject().updateTexture("src/main/resources/sample/Snake Sprites/head right.png");
     } else if (velocityX < 0) {
-      snake.getGraphicObject().updateTexture("sample/Snake Sprites/head left.png");
+      snake.getGraphicObject().updateTexture("src/main/resources/sample/Snake Sprites/head left.png");
     } else if (velocityY > 0) {
-      snake.getGraphicObject().updateTexture("sample/Snake Sprites/head down.png");
+      snake.getGraphicObject().updateTexture("src/main/resources/sample/Snake Sprites/head down.png");
     } else if (velocityY < 0) {
-      snake.getGraphicObject().updateTexture("sample/Snake Sprites/head up.png");
+      snake.getGraphicObject().updateTexture("src/main/resources/sample/Snake Sprites/head up.png");
     }
   }
   private static void setSnakeBodyTexture() {
@@ -277,13 +277,13 @@ public class Main {
 
       // Update the texture based on the relative position
       if (currentX < nextX) {
-        bodySegment.getGraphicObject().updateTexture("sample/Snake Sprites/right left.png");
+        bodySegment.getGraphicObject().updateTexture("src/main/resources/sample/Snake Sprites/right left.png");
       } else if (currentX > nextX) {
-        bodySegment.getGraphicObject().updateTexture("sample/Snake Sprites/right left.png");
+        bodySegment.getGraphicObject().updateTexture("src/main/resources/sample/Snake Sprites/right left.png");
       } else if (currentY < nextY) {
-        bodySegment.getGraphicObject().updateTexture("sample/Snake Sprites/up down.png");
+        bodySegment.getGraphicObject().updateTexture("src/main/resources/sample/Snake Sprites/up down.png");
       } else if (currentY > nextY) {
-        bodySegment.getGraphicObject().updateTexture("sample/Snake Sprites/up down.png");
+        bodySegment.getGraphicObject().updateTexture("src/main/resources/sample/Snake Sprites/up down.png");
       }
     }
   }
@@ -304,47 +304,47 @@ public class Main {
 
     // Create a new apple GameObject
     GameObject apple = coreKernel.createGameObject( appleSize, appleSize,x, y, Color.YELLOW);
-    apple.getGraphicObject().setTexture("sample/Snake Sprites/apple.png"); // Set the texture for the apple
+    apple.getGraphicObject().setTexture("src/main/resources/sample/Snake Sprites/apple.png"); // Set the texture for the apple
 
     apples.add(apple);
   }
   static void spawnBackground() {
     background = coreKernel.createGameObject(screenWidth, screenHeight, 0, 0, Color.TRANSPARENT); // Adjust size as needed
-    background.getGraphicObject().setTexture("sample/Environement/wp2635955.png");
+    background.getGraphicObject().setTexture("src/main/resources/sample/Environement/wp2635955.png");
     // Set the texture for the background image
   }
   static void spawnWalls() {
 // Top wall
     for (int x = wallSize/2; x < screenWidth; x += wallSize) {
       GameObject wall = coreKernel.createGameObject(wallSize, wallSize, x, 0+(wallSize/2), Color.GRAY);
-      wall.getGraphicObject().setTexture("sample/Environement/wall.png");
+      wall.getGraphicObject().setTexture("src/main/resources/sample/Environement/wall.png");
       walls.add(wall);
     }
 
 //    // Bottom wall
     for (int x = wallSize/2; x < screenWidth; x += wallSize) {
       GameObject wall = coreKernel.createGameObject(wallSize, wallSize, x, screenHeight - (wallSize+ wallSize/2) , Color.GRAY);
-      wall.getGraphicObject().setTexture("sample/Environement/wall.png");
+      wall.getGraphicObject().setTexture("src/main/resources/sample/Environement/wall.png");
       walls.add(wall);
     }
 
     // Left wall
     for (int y = wallSize; y < screenHeight - wallSize; y += wallSize) {
       GameObject wall = coreKernel.createGameObject(wallSize, wallSize, wallSize/2, y+wallSize/2, Color.GRAY);
-      wall.getGraphicObject().setTexture("sample/Environement/wall.png");
+      wall.getGraphicObject().setTexture("src/main/resources/sample/Environement/wall.png");
       walls.add(wall);
     }
 
     // Right wall
     for (int y = gridSize + gridSize/2; y < screenHeight - wallSize; y += wallSize) {
       GameObject wall = coreKernel.createGameObject(wallSize, wallSize,  screenWidth - wallSize/2 , y, Color.GRAY);
-      wall.getGraphicObject().setTexture("sample/Environement/wall.png");
+      wall.getGraphicObject().setTexture("src/main/resources/sample/Environement/wall.png");
       walls.add(wall);
     }
   }
   static void gameOver(){
     GameObject gameOver = coreKernel.createGameObject(screenWidth,screenHeight,screenWidth/2,screenHeight/2);
-    gameOver.getGraphicObject().setTexture("sample/HUD/gameover.png");
+    gameOver.getGraphicObject().setTexture("src/main/resources/sample/HUD/gameover.png");
     gameOver.getGraphicObject().rescaleImageView(screenWidth,screenHeight);
     coreKernel.setGameIsRunning(false);
   }

@@ -35,10 +35,38 @@ public class Main {
     spawnWalls();
 
 
-    coreKernel.getInputHandler().addMapping(KeyBinds.VK_DOWN, () -> snake.getPhysicObject().setVelocity(0, speed));
-    coreKernel.getInputHandler().addMapping(KeyBinds.VK_UP, () -> snake.getPhysicObject().setVelocity(0, -speed));
-    coreKernel.getInputHandler().addMapping(KeyBinds.VK_RIGHT, () -> snake.getPhysicObject().setVelocity(speed, 0));
-    coreKernel.getInputHandler().addMapping(KeyBinds.VK_LEFT, () -> snake.getPhysicObject().setVelocity(-speed, 0));
+// Assume snakeDirection is an array of size 1 to keep track of the current direction (0 for vertical, 1 for horizontal)
+    int[] snakeDirection = {1};
+
+    coreKernel.getInputHandler().addMapping(KeyBinds.VK_DOWN, () -> {
+      if (snakeDirection[0] != 0) {
+        snakeDirection[0] = 0;
+        snake.getPhysicObject().setVelocity(0, speed);
+      }
+    });
+
+    coreKernel.getInputHandler().addMapping(KeyBinds.VK_UP, () -> {
+      if (snakeDirection[0] != 0) {
+        snakeDirection[0] = 0;
+        snake.getPhysicObject().setVelocity(0, -speed);
+      }
+    });
+
+    coreKernel.getInputHandler().addMapping(KeyBinds.VK_RIGHT, () -> {
+      if (snakeDirection[0] != 1) {
+        snakeDirection[0] = 1;
+        snake.getPhysicObject().setVelocity(speed, 0);
+      }
+    });
+
+    coreKernel.getInputHandler().addMapping(KeyBinds.VK_LEFT, () -> {
+      if (snakeDirection[0] != 1) {
+        snakeDirection[0] = 1;
+        snake.getPhysicObject().setVelocity(-speed, 0);
+      }
+    });
+
+
 
     update();
     coreKernel.startGame(args);

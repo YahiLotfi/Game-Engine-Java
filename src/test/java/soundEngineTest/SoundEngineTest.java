@@ -1,3 +1,5 @@
+package soundEngineTest;
+
 import soundEngine.SoundEngine;
 
 import org.junit.jupiter.api.Test;

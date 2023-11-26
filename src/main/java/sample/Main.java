@@ -94,7 +94,7 @@ public class Main {
         for (int i = 3; i < snakeBody.size(); i++) {
           GameObject Body = snakeBody.get(i);
           //snakeBody.get(snakeBody.size()).getPhysicObject()
-          if (PhysicEngine.checkCollisionSerpent(Body.getPhysicObject(), snake.getPhysicObject())) {
+          if (PhysicEngine.checkCollisionSelf(Body.getPhysicObject(), snake.getPhysicObject())) {
             System.out.println("Collision snake avec son corps!");
 
           }

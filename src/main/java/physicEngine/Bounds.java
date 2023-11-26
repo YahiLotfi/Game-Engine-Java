@@ -54,5 +54,11 @@ public class Bounds {
             this.x = x;
             this.y = y;
         }
+
+    public float getWidth() { return this.width;
     }
+
+    public float getHeight() { return this.height;
+    }
+}
 

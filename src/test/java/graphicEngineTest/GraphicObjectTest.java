@@ -37,18 +37,19 @@ class GraphicObjectTest {
         assertEquals(15.0f - graphicObject.getCenterY(), graphicObject.getRectangle().getLayoutY());
     }
 
-    /*
+/*
     @Test
     void testGraphicObjectCreateImageView() {
         GraphicObject graphicObject = new GraphicObject(20.0f, 30.0f, 5.0f, 8.0f, Color.BLUE);
-        graphicObject.setTexture("/src/main/resources/sample/Snake Sprites/right left.png");
+        graphicObject.setTexture("../../main/resources/sample/Snake Sprites/right left.png");
 
         ImageView imageView = graphicObject.createImageView();
 
         assertNotNull(imageView);
-        assertEquals("/src/main/resources/sample/Snake Sprites/right left.png", graphicObject.getTexture());
+        assertEquals("../../main/resources/sample/Snake Sprites/right left.png", graphicObject.getTexture());
         assertNull(graphicObject.getRectangle().getFill()); // Color should be null if using a texture
     }
+
 
     @Test
     void testGraphicObjectUpdateTexture() {

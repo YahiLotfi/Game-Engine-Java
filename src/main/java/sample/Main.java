@@ -5,6 +5,7 @@ import inputEngine.KeyBinds;
 import javafx.scene.paint.Color;
 import physicEngine.Bounds;
 import physicEngine.PhysicEngine;
+import soundEngine.SoundEngine;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -25,9 +26,20 @@ public class Main {
   static ArrayList<GameObject> apples = new ArrayList<>();
   static GameObject background;
   static int appleSize = 40;
+
+  static SoundEngine soundEngine = new SoundEngine();
   public static void main(String[] args) {
     snake.getGraphicObject().setTexture("sample/Snake Sprites/head right.png");
     snake.getPhysicObject().setVelocity(speed, 0);
+
+    String filePath = "src/main/resources/sample/Sounds/background1.wav";
+
+    try {
+      soundEngine.load(filePath);
+      soundEngine.playBack();
+
+
+
 
     for (int i = 0; i < 5; i++) {
       addBodySegment();
@@ -73,6 +85,12 @@ public class Main {
 
     update();
     coreKernel.startGame(args);
+
+    soundEngine.stop();
+    } catch (Exception ex) {
+      System.out.println("Error with playing sound.");
+      ex.printStackTrace();
+    }
   }
 
   static void update() {
@@ -99,7 +117,23 @@ public class Main {
           //snakeBody.get(snakeBody.size()).getPhysicObject()
           if (PhysicEngine.checkCollisionSelf(Body.getPhysicObject(), snake.getPhysicObject())) {
             System.out.println("Collision snake avec son corps!");
-            gameOver();
+            SoundEngine soundEngine2 = new SoundEngine();
+            String filePath2 = "src/main/resources/sample/Sounds/PERDU.wav";
+            try {
+
+
+              soundEngine2.load(filePath2);
+              soundEngine2.play();
+
+              gameOver();
+              soundEngine.stop();
+              soundEngine2.stop();
+
+
+            } catch (Exception ex) {
+              System.out.println("Error with playing sound.");
+              ex.printStackTrace();
+            }
           }
         }
 
@@ -108,7 +142,31 @@ public class Main {
         for (GameObject wall : walls) {
           if (PhysicEngine.checkCollision(snake.getPhysicObject(), wall.getPhysicObject())) {
             System.out.println("Collision avec un mur!");
+
+            SoundEngine soundEngine2 = new SoundEngine();
+            String filePath2 = "src/main/resources/sample/Sounds/fail.wav";
+            try {
+
+
+            soundEngine2.load(filePath2);
+            soundEngine2.play();
+            Thread.sleep(700);
+
             gameOver();
+              soundEngine.stop();
+            soundEngine2.stop();
+
+
+            } catch (Exception ex) {
+              System.out.println("Error with playing sound.");
+              ex.printStackTrace();
+            }
+
+            Thread.sleep(1000);
+
+
+
+
           }
         }
 
@@ -119,6 +177,21 @@ public class Main {
             applesToRemove.add(apple);
             addBodySegment();
             System.out.println("Collision avec une pomme!");
+            SoundEngine soundEngine2 = new SoundEngine();
+
+            String filePath2 = "src/main/resources/sample/Sounds/game-start.wav";
+
+            try {
+
+
+              soundEngine2.load(filePath2);
+              soundEngine2.play();
+
+
+            } catch (Exception ex) {
+              System.out.println("Error with playing sound.");
+              ex.printStackTrace();
+            }
           }
         }
         for (GameObject apple : applesToRemove) {

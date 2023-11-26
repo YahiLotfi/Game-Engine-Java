@@ -124,8 +124,8 @@ public class Main {
 
               soundEngine2.load(filePath2);
               soundEngine2.play();
-
               gameOver();
+              Thread.sleep(700);
               soundEngine.stop();
               soundEngine2.stop();
 
@@ -150,10 +150,10 @@ public class Main {
 
             soundEngine2.load(filePath2);
             soundEngine2.play();
-            Thread.sleep(700);
 
             gameOver();
-              soundEngine.stop();
+            Thread.sleep(700);
+            soundEngine.stop();
             soundEngine2.stop();
 
 

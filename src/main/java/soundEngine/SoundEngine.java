@@ -117,5 +117,36 @@ public class SoundEngine {
         //clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
+    public static void main(String[] args) {
+        try {
+            SoundEngine soundEngine = new SoundEngine();
+            String filePath = "src/main/resources/sample/Sounds/background1.wav";
+            soundEngine.load(filePath);
+            soundEngine.playBack();
+
+            SoundEngine soundEngine2 = new SoundEngine();
+            String filePath2 = "src/main/resources/sample/Sounds/wall.wav";
+            soundEngine2.load(filePath2);
+
+            int i = 0;
+
+            while (true) {
+                System.out.println(i);
+                i++;
+                if (i % 1000 == 0) {
+                    soundEngine2.load(filePath2);
+                    soundEngine2.play();
+                    Thread.sleep(2000);
+                }
+
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Error with playing sound.");
+            ex.printStackTrace();
+        }
+    }
+
+
 
 }

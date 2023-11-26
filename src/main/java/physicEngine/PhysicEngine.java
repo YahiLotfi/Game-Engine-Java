@@ -66,6 +66,10 @@ public class PhysicEngine {
                                 BoundsObject1.getMiddleDownY() > BoundsObject2.getMiddleTopY()  )
         );
     }
+    public void removePhysicObject(PhysicObject physicObject) {
+        physicObjects.remove(physicObject);
+    }
+
     public void updateEngine(){
         for (PhysicObject physicObject : physicObjects) {
             physicObject.update( );

@@ -34,12 +34,16 @@ public class GameFrame extends Application {
 			}
 		}
 
-		public Scene getScene() {
-			return scene;
-		}
-		public void setScene(Scene scene) {
-			this.scene = scene;
-		}
+	public void removeObjectFromRoot(ArrayList<GraphicObject> graphicObjects) {
+			if(graphicObjects !=null) {
+				for (GraphicObject graphicObject : graphicObjects) {
+					root.getChildren().remove(graphicObject.getRectangle());
+					if (graphicObject.getTexture() != null) {
+						root.getChildren().remove(graphicObject.getImageView());
+					}
+				}
+			}
+	}
 		public GameFrame() {
 			System.out.println("GameFrame afficher");
 		}
@@ -57,7 +61,6 @@ public class GameFrame extends Application {
 			// Get the visual bounds of the screen
 			javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
 			// Create your JavaFX content here
-
 			// Set the stage's dimensions to match the screen's dimensions
 			primaryStage.setX(bounds.getMinX());
 			primaryStage.setY(bounds.getMinY());
@@ -76,7 +79,8 @@ public class GameFrame extends Application {
 				double deltaTime = (now - lastFrameTime) / 1_000_000.0; // Convert to milliseconds
 
 				if (deltaTime >= TARGET_FRAME_TIME) {
-
+					removeObjectFromRoot(graphicEngine.getObjectsToRemove());
+					addObjectsToRoot(graphicEngine.getGraphicObjects());
 					gameLoop.run();
 
 					lastFrameTime = now;
@@ -98,10 +102,10 @@ public class GameFrame extends Application {
 	/*addObjectsToRoot() prend en entrée une liste GraphicObject
 	et ajoute chaque objet à la racine de la scène.*/
 	void addObjectsToRoot(ArrayList<GraphicObject> objects){
-		for (GraphicObject obj : objects
-		) {
+		for (GraphicObject obj : objects) {
 			addObjToRoot(obj);
 		}
+		graphicEngine.setGraphicObjects( new ArrayList<GraphicObject>());
 	}
 
 	    public static void main(String[] args , GraphicEngine graphicEngine , Consumer<Scene> sceneConsumer , Runnable gameloop)

@@ -110,12 +110,20 @@ public class Main {
         }
 
         // Vérifier la collision entre la tête du serpent et les fruits
+        ArrayList<GameObject> applesToRemove = new ArrayList<GameObject>();
         for (GameObject apple : apples) {
           if (PhysicEngine.checkCollision(snake.getPhysicObject(), apple.getPhysicObject())) {
+            applesToRemove.add(apple);
+            addBodySegment();
             System.out.println("Collision avec une pomme!");
           }
         }
-
+        for (GameObject apple : applesToRemove) {
+          coreKernel.removeGameObject(apple);
+          spawnApple();
+          apples.remove(apple);
+        }
+        //snakeBody.get(snakeBody.size()-1).getGraphicObject().updateTexture(sample/Snake Sprites/);tail
       }
     };
   }
@@ -209,8 +217,16 @@ public class Main {
     Random random = new Random();
 
     // Generate random coordinates within the game bounds
-    float x = random.nextInt(1920/ gridSize) * gridSize;
-    float y = random.nextInt(1080/ gridSize) * gridSize;
+//    float x = random.nextInt(1920/ gridSize) * gridSize;
+//    float y = random.nextInt(1080/ gridSize) * gridSize;
+    int x, y;
+
+    do {
+      x = random.nextInt((1920 - gridSize) / gridSize + 1) * gridSize;
+      y = random.nextInt((1080 - gridSize) / gridSize + 1) * gridSize;
+
+      System.out.println("Generated coordinates: x = " + x + ", y = " + y);
+    } while (x <= (gridSize + gridSize/2) || x >= 1920 - (gridSize + gridSize/2) || y <= (gridSize + gridSize/2) || y >= 1080 - (gridSize + gridSize/2));
 
     // Create a new apple GameObject
     GameObject apple = coreKernel.createGameObject( appleSize, appleSize,x, y, Color.YELLOW);
@@ -252,6 +268,7 @@ public class Main {
       walls.add(wall);
     }
   }
+
 //  public void checkCollisions{
 //    for(GameObject apple : apples){
 //      coreKernel.

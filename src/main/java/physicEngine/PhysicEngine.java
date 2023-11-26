@@ -16,8 +16,19 @@ public class PhysicEngine {
         return physicObject;
     }
 
+    public static boolean intersectSerpent(float x1, float  x2, float y1, float   y2){
+        return (y1<x1 && x1<y2)||(y1<x2 && x2<y2 );}
 
+    public static boolean checkCollisionSerpent(PhysicObject object1, PhysicObject object2) {
+      return (intersectSerpent(object1.getPosition().getX(), object1.getRight(), object2.getPosition().getX(), object2.getRight())&&
+                intersectSerpent(object1.getPosition().getY(), object1.getBottom(), object2.getPosition().getY(), object2.getBottom())
+        );
+
+
+
+    }
     public static boolean intersects(float x1, float  x2, float y1, float   y2){
+
         return (y1<=x1 && x1<=y2)||(y1<=x2 && x2<=y2 );
     }
     public static boolean checkCollision(PhysicObject object1, PhysicObject object2) {

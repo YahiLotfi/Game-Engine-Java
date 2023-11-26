@@ -63,7 +63,17 @@ public class Main {
           // Update the position of the head based on its velocity
           snake.getPhysicObject().update();
 
+        for (int i = 3; i < snakeBody.size(); i++) {
+          GameObject Body = snakeBody.get(i);
+          //snakeBody.get(snakeBody.size()).getPhysicObject()
+          if (PhysicEngine.checkCollisionSerpent(Body.getPhysicObject(), snake.getPhysicObject())) {
+            System.out.println("Collision snake avec son corps!");
+
+          }
+        }
+
         // Vérifier la collision entre la tête du serpent et les murs
+
         for (GameObject wall : walls) {
           if (PhysicEngine.checkCollision(snake.getPhysicObject(), wall.getPhysicObject())) {
             System.out.println("Collision avec un mur!");

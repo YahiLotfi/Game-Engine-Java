@@ -162,8 +162,6 @@ public class Main {
               ex.printStackTrace();
             }
 
-            Thread.sleep(1000);
-
 
 
 

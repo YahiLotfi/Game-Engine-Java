@@ -11,17 +11,20 @@ import java.util.Random;
 
 public class Main {
 
+  static final int screenWidth = 960; // Set your actual screen width
+  static final int screenHeight = 600; // Set your actual screen height
+
   static CoreKernel coreKernel = new CoreKernel();
-  static GameObject snake = coreKernel.createGameObject(50, 50, 960, 540, Color.RED);
+  static GameObject snake = coreKernel.createGameObject(50, 50, 200, 200, Color.RED);
 
   static ArrayList<GameObject> snakeBody = new ArrayList<>();
-  static float speed = 20f;
-  static int gridSize = 20; // Size of the grid
-  static int wallSize = 29; // Size of the wall
+  static float speed = 10f;
+  static int gridSize = 10; // Size of the grid
+  static int wallSize = 40; // Size of the wall
   static ArrayList<GameObject> walls = new ArrayList<>();
   static ArrayList<GameObject> apples = new ArrayList<>();
   static GameObject background;
-  static int appleSize = 50;
+  static int appleSize = 40;
   public static void main(String[] args) {
     snake.getGraphicObject().setTexture("sample/Snake Sprites/head right.png");
     snake.getPhysicObject().setVelocity(speed, 0);
@@ -217,16 +220,16 @@ public class Main {
     Random random = new Random();
 
     // Generate random coordinates within the game bounds
-//    float x = random.nextInt(1920/ gridSize) * gridSize;
-//    float y = random.nextInt(1080/ gridSize) * gridSize;
+//    float x = random.nextInt(screenWidth/ gridSize) * gridSize;
+//    float y = random.nextInt(screenHeight/ gridSize) * gridSize;
     int x, y;
 
     do {
-      x = random.nextInt((1920 - gridSize) / gridSize + 1) * gridSize;
-      y = random.nextInt((1080 - gridSize) / gridSize + 1) * gridSize;
+      x = random.nextInt((screenWidth - wallSize) / wallSize + 1) * wallSize;
+      y = random.nextInt((screenHeight - wallSize) / wallSize + 1) * wallSize;
 
       System.out.println("Generated coordinates: x = " + x + ", y = " + y);
-    } while (x <= (gridSize + gridSize/2) || x >= 1920 - (gridSize + gridSize/2) || y <= (gridSize + gridSize/2) || y >= 1080 - (gridSize + gridSize/2));
+    } while (x <= (gridSize + wallSize/2) || x >= screenWidth - (wallSize + wallSize/2) || y <= (wallSize + wallSize/2) || y >= screenHeight - (wallSize + wallSize/2));
 
     // Create a new apple GameObject
     GameObject apple = coreKernel.createGameObject( appleSize, appleSize,x, y, Color.YELLOW);
@@ -235,35 +238,35 @@ public class Main {
     apples.add(apple);
   }
   static void spawnBackground() {
-    background = coreKernel.createGameObject(1920, 1080, 0, 0, Color.TRANSPARENT); // Adjust size as needed
+    background = coreKernel.createGameObject(screenWidth, screenHeight, 0, 0, Color.TRANSPARENT); // Adjust size as needed
     background.getGraphicObject().setTexture("sample/Environement/wp2635955.png");
     // Set the texture for the background image
   }
   static void spawnWalls() {
-    // Top wall
-    for (int x = 0; x < 1920; x += wallSize) {
-      GameObject wall = coreKernel.createGameObject(wallSize, wallSize, x, 0, Color.GRAY);
+// Top wall
+    for (int x = wallSize/2; x < screenWidth; x += wallSize) {
+      GameObject wall = coreKernel.createGameObject(wallSize, wallSize, x, 0+(wallSize/2), Color.GRAY);
       wall.getGraphicObject().setTexture("sample/Environement/wall.png");
       walls.add(wall);
     }
 
-    // Bottom wall
-    for (int x = 0; x < 1920; x += wallSize) {
-      GameObject wall = coreKernel.createGameObject(wallSize, wallSize, x, 1080 - wallSize, Color.GRAY);
+//    // Bottom wall
+    for (int x = wallSize/2; x < screenWidth; x += wallSize) {
+      GameObject wall = coreKernel.createGameObject(wallSize, wallSize, x, screenHeight - (wallSize+ wallSize/2) , Color.GRAY);
       wall.getGraphicObject().setTexture("sample/Environement/wall.png");
       walls.add(wall);
     }
 
     // Left wall
-    for (int y = wallSize; y < 1080 - wallSize; y += wallSize) {
-      GameObject wall = coreKernel.createGameObject(wallSize, wallSize, 0, y, Color.GRAY);
+    for (int y = wallSize; y < screenHeight - wallSize; y += wallSize) {
+      GameObject wall = coreKernel.createGameObject(wallSize, wallSize, wallSize/2, y+wallSize/2, Color.GRAY);
       wall.getGraphicObject().setTexture("sample/Environement/wall.png");
       walls.add(wall);
     }
 
     // Right wall
-    for (int y = wallSize; y < 1080 - wallSize; y += wallSize) {
-      GameObject wall = coreKernel.createGameObject(wallSize, wallSize, 1920 - wallSize, y, Color.GRAY);
+    for (int y = gridSize + gridSize/2; y < screenHeight - wallSize; y += wallSize) {
+      GameObject wall = coreKernel.createGameObject(wallSize, wallSize,  screenWidth - wallSize/2 , y, Color.GRAY);
       wall.getGraphicObject().setTexture("sample/Environement/wall.png");
       walls.add(wall);
     }

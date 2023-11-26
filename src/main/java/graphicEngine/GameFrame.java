@@ -64,8 +64,8 @@ public class GameFrame extends Application {
 			// Set the stage's dimensions to match the screen's dimensions
 			primaryStage.setX(bounds.getMinX());
 			primaryStage.setY(bounds.getMinY());
-			primaryStage.setWidth(1920);
-			primaryStage.setHeight(1080);
+			primaryStage.setWidth(960);
+			primaryStage.setHeight(600);
 			primaryStage.setTitle("Constant Frame Rate Game");
 			scene = new Scene(root);
 			sceneConsumer.accept(scene);

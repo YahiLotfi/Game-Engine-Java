@@ -12,7 +12,7 @@ public class InputHandler {
         @Override
         public void handle(KeyEvent event) {
 
-            inputMappings.get(event.getCode().getCode()).run();
+                inputMappings.get(event.getCode().getCode()).run();
         }
     };
     public void addMapping(int event , Runnable action){

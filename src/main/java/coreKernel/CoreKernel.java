@@ -67,6 +67,11 @@ public class CoreKernel {
         gameObjects.add(go);
         return go;
     }
+    public void removeGameObject(GameObject go){
+        gameObjects.remove(go);
+        graphicEngine.removeGraphicObject(go.getGraphicObject());
+        physicEngine.removePhysicObject(go.getPhysicObject());
+    }
     public GameObject createGameObject(float width , float height, float x, float y )
     {
         GameObject go = new GameObject();

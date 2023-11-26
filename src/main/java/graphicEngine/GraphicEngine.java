@@ -5,6 +5,11 @@ public class GraphicEngine {
 
 
     private ArrayList<GraphicObject> graphicObjects;
+    private ArrayList<GraphicObject> objectsToRemove = new ArrayList<GraphicObject>();
+
+    public ArrayList<GraphicObject> getObjectsToRemove() {
+        return objectsToRemove;
+    }
 
     public ArrayList<GraphicObject> getGraphicObjects() {
         return (ArrayList<GraphicObject>) graphicObjects;
@@ -25,6 +30,12 @@ public class GraphicEngine {
         graphicObjects.add(graphicObject);
         return graphicObject;
     }
+
+    public void removeGraphicObject(GraphicObject graphicObject) {
+        objectsToRemove.add(graphicObject);
+        graphicObjects.remove(graphicObject);
+    }
+
     public void UpdateEngine(){
 
 

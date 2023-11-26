@@ -61,7 +61,7 @@ public class GraphicObject {
 
 		this.rectangle.setLayoutX(x - this.getCenterX());
         this.rectangle.setLayoutY(y - this.getCenterY());
-		if(texture != null){
+		if(imageView != null){
 			imageView.setTranslateX(x - this.getCenterX());
 			imageView.setTranslateY(y - this.getCenterY());
 		}

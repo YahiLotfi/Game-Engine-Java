@@ -1,4 +1,5 @@
 package graphicEngine;
+import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
 public class GraphicEngine {
@@ -6,6 +7,7 @@ public class GraphicEngine {
 
     private ArrayList<GraphicObject> graphicObjects;
     private ArrayList<GraphicObject> objectsToRemove = new ArrayList<GraphicObject>();
+    private  ArrayList<Label> labels = new ArrayList<Label>();
 
     public ArrayList<GraphicObject> getObjectsToRemove() {
         return objectsToRemove;
@@ -39,6 +41,10 @@ public class GraphicEngine {
     public void UpdateEngine(){
 
 
+    }
+    public Label addLayout(){
+        Label label = new Label();
+        return label;
     }
 
 

@@ -32,7 +32,7 @@ public class Main {
     snake.getGraphicObject().setTexture("sample/Snake Sprites/head right.png");
     snake.getPhysicObject().setVelocity(speed, 0);
 
-    String filePath = "src/main/resources/sample/Sounds/background1.wav";
+    String filePath = "sample/Sounds/background1.wav";
 
     try {
       soundEngine.load(filePath);
@@ -118,7 +118,7 @@ public class Main {
           if (PhysicEngine.checkCollisionSelf(Body.getPhysicObject(), snake.getPhysicObject())) {
             System.out.println("Collision snake avec son corps!");
             SoundEngine soundEngine2 = new SoundEngine();
-            String filePath2 = "src/main/resources/sample/Sounds/PERDU.wav";
+            String filePath2 = "sample/Sounds/PERDU.wav";
             try {
 
 
@@ -144,7 +144,7 @@ public class Main {
             System.out.println("Collision avec un mur!");
 
             SoundEngine soundEngine2 = new SoundEngine();
-            String filePath2 = "src/main/resources/sample/Sounds/fail.wav";
+            String filePath2 = "sample/Sounds/fail.wav";
             try {
 
 
@@ -177,7 +177,7 @@ public class Main {
             System.out.println("Collision avec une pomme!");
             SoundEngine soundEngine2 = new SoundEngine();
 
-            String filePath2 = "src/main/resources/sample/Sounds/game-start.wav";
+            String filePath2 = "sample/Sounds/game-start.wav";
 
             try {
 

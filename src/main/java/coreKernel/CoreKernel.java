@@ -16,6 +16,9 @@ public class CoreKernel {
     private GraphicEngine graphicEngine;
     private InputHandler inputHandler;
     private boolean gameIsRunning=true;
+
+
+
     public Runnable update;
     public double sceneWidth;
     public double sceneHeight;
@@ -33,6 +36,9 @@ public class CoreKernel {
 //    public physicEngine getPhysicEngine() {
 //        return physicEngine;
 //    }
+public void setGameIsRunning(boolean gameIsRunning) {
+    this.gameIsRunning = gameIsRunning;
+}
 
     public GraphicEngine getGraphicEngine() {
         return graphicEngine;
@@ -51,11 +57,12 @@ public class CoreKernel {
      /* La fonction gameLoop() est la fonction principale d'une boucle de jeu.
     Elle est appelée à chaque frame du jeu et est responsable de mettre à jour le jeu.*/
     public void gameLoop(){
-            deltaTime =  (lastFrametime - System.currentTimeMillis()) * timeScale;// Calcule le temps écoulé depuis la dernière frame.
-            lastFrametime = System.currentTimeMillis();
+        if(gameIsRunning){
             update.run();
             physicEngine.updateEngine();// appelle la méthode updateEngine() du moteur physique pour mettre à jour le mouvement des objets du jeu.
             updateGameObjects();
+        }
+
     }
     public GameObject createGameObject(float width , float height, float x, float y , Color color)
     {
